@@ -61,3 +61,9 @@ async function login(req, res) {
         errorHandler('login', err, 500, res);
     }
 }
+
+// Exports module methods:
+module.exports = {
+    create,
+    login,
+};
