@@ -11,20 +11,3 @@ module.exports = function errorHandler(functionName, error, statusError, res) {
         res.status(statusError).json(error);
     }
 }
-
-// USE EXAMPLE:
-/*
-// Requires errorHandler:
-const errorHandler = require('../../errorHandler');
-
-function checkToken(req, res) {
-    try {
-        console.log('req.user', req.user); 
-        res.json(req.exp);
-    } catch (err) {
-        // Error handler:
-        errorHandler('checkToken', err, 500, res);
-    }
-}
-        
-*/

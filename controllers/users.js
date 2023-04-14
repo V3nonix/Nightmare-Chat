@@ -1,5 +1,6 @@
 // Requires Mongoose Model(s):
 const User = require('../../models/user');
+const UserData = require('../../models/userData');
 // Requires JWT (JsonWebToken):
 const jwt = require('jsonwebtoken');
 // Requires Bcrypt library:
@@ -22,6 +23,12 @@ async function create(req, res) {
     try {
         // Creates new user in database:
         const user = await User.create(req.body);
+        // Creates new userData for user in database:
+        await UserData.create({
+            userId: user._id,
+            chatrooms: [],
+            groups: [],
+        });
         // Token that contains encoded User data:
         const token = createJWT(user);
         // Parses token to JSON:

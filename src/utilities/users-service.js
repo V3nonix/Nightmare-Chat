@@ -25,7 +25,7 @@ export function getToken() {
         // Returns null because no valid token exists:
         return null;
     }
-    // Successfully returns token:
+    // Successfully returns decoded token:
     return token;
 }
 
