@@ -25,7 +25,7 @@ async function create(req, res) {
         const user = await User.create(req.body);
         // Creates new userData for user in database:
         await UserData.create({
-            userId: user._id,
+            user: user._id,
             chatrooms: [],
             groups: [],
         });
