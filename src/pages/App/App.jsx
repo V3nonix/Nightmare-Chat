@@ -29,7 +29,7 @@ export default function App() {
           <Route path='/user/:id' element={<UserPage user={user}/>}/>
           <Route path='/room/:id' element={<ChatroomPage user={user}/>}/>
           <Route path='/group/:id' element={<GroupChatPage user={user}/>}/>
-          <Route path="/*" element={<Navigate to="/user" />} />
+          <Route path="/*" element={<Navigate to="/user/:id" />} />
         </Routes>
       </> 
         :
