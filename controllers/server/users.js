@@ -8,7 +8,7 @@ const bcrypt = require('bcrypt');
 // Requires errorHandler:
 const errorHandler = require('../../errorHandler');
 
-// Create Helper Functions:
+// GENERAL Helper Functions:
 function createJWT(user) {
     return jwt.sign(
         // Data payload:

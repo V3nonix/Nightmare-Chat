@@ -25,7 +25,17 @@ app.listen(port, () => {
 
 /* MOUNT API & OTHER ROUTES HERE */
 
+app.use('/server/users', require('./routes/server/orders'));
+
 // Protected router(s):
+
+/* SERVER */
+app.use('/server/groups', ensureLoggedIn, require('./routes/server/groups'));
+app.use('/server/rooms', ensureLoggedIn, require('./routes/server/rooms'));
+app.use('/server/users', ensureLoggedIn, require('./routes/server/users'));
+/* API */
+app.use('/api/assets', ensureLoggedIn, require('./routes/api/assets'));
+
 
 // Defines catch route:
 app.get('/*', (req, res) => {
