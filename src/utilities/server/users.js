@@ -1,7 +1,7 @@
 // Endpoints:
 const BASE_URL = '/server/users';
 // Imports:
-import sendRequest from './send-request';
+import sendRequest from '../send-req';
 
 /* All functions use sendRequest, and return the output. */
 

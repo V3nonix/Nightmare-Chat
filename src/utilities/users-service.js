@@ -1,10 +1,10 @@
 // Imports external methods:
-import * as usersAPI from './users-api.js';
+import * as usersSCM from './server/users';
 
 // User signUp method (exported):
 export async function signUp(userData) {
     // Forwards request code to users API module:
-    const token = await usersAPI.signUp(userData);
+    const token = await usersSCM.signUp(userData);
     // Persists token in local storage:
     localStorage.setItem('token', token);
     // Returns user token:
@@ -47,7 +47,7 @@ export function logOut() {
 // User logIn method (exported):
 export async function login(credentials) {
     // Forwards request code to users API module:
-    const token = await usersAPI.login(credentials);
+    const token = await usersSCM.login(credentials);
     // Persists token in local storage:
     localStorage.setItem('token', token);
     // Returns user token:
@@ -58,6 +58,6 @@ export async function login(credentials) {
 export function checkToken() {
     // Returns promise...
     //... Then converts output to Date when resolved:
-    return usersAPI.checkToken()
+    return usersSCM.checkToken()
         .then(dateStr => new Date(dateStr));
 }
