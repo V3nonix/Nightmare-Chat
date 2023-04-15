@@ -3,11 +3,22 @@ const mongoose = require('mongoose');
 // Shortcut for mongoose.Schema:
 const Schema = mongoose.Schema;
 
-// ChatroomsElement Schema:
-const chatroomsElementSchema = new Schema({
+// ChatroomsEntry Schema:
+const chatroomsEntrySchema = new Schema({
     id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Chatroom",
+        ref: 'Chatroom',
+        required: true
+    },
+    name: { type: String, required: true },
+    thumb: { type: string }
+});
+
+// ChatGroupsEntry Schema:
+const chatGroupsEntrySchema = new Schema({
+    id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'ChatGroup',
         required: true
     },
     name: { type: String, required: true },
@@ -21,8 +32,24 @@ const userDataSchema = new Schema({
         ref: "User",
         required: true
     },
-    chatrooms: [userDataSchema],
-    groups: 'startHere'
+    chatrooms: {
+        type: [chatroomsEntrySchema],
+        validate: {
+            validator: function(arr) {
+                return arr.length > 10
+            }, 
+            message: 'Maximum chatrooms reached!'
+        }
+    },
+    groups: {
+        type: [chatGroupsEntrySchema],
+        validate: {
+            validator: function(arr) {
+                return arr.length > 15
+            }, 
+            message: 'Maximum group chats reached!'
+        }
+    },
 });
 
 // Exports userSchema as Mongoose Model:
