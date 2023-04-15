@@ -11,7 +11,7 @@ const chatroomsEntrySchema = new Schema({
         required: true
     },
     name: { type: String, required: true },
-    thumb: { type: string }
+    thumb: { type: String }
 });
 
 // ChatGroupsEntry Schema:
@@ -22,7 +22,7 @@ const chatGroupsEntrySchema = new Schema({
         required: true
     },
     name: { type: String, required: true },
-    thumb: { type: string }
+    thumb: { type: String }
 });
 
 // UserData Schema:
@@ -36,7 +36,7 @@ const userDataSchema = new Schema({
         type: [chatroomsEntrySchema],
         validate: {
             validator: function(arr) {
-                return arr.length > 10
+                return arr.length < 10
             }, 
             message: 'Maximum chatrooms reached!'
         }
@@ -45,7 +45,7 @@ const userDataSchema = new Schema({
         type: [chatGroupsEntrySchema],
         validate: {
             validator: function(arr) {
-                return arr.length > 15
+                return arr.length < 15
             }, 
             message: 'Maximum group chats reached!'
         }

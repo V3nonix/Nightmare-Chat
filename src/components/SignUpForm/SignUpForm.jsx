@@ -16,14 +16,17 @@ const initialForm = {
 export default function SignUpForm({ alterUser }) {
     // Sets state:
     const [formData, setFormData] = useState(initialForm);
+    // State related variables:
+    let disabled = formData.password !== formData.confirm;
     // Event handler functions:
-    handleChange = (evt) => {
+    function handleChange(evt) {
         setFormData({
+            ...formData,
             [evt.target.name]: evt.target.value,
             error: ''
         });
     };
-    handleSubmit = async (evt) => {
+    async function handleSubmit(evt) {
         // Prevent default form submission: 
         evt.preventDefault();
         // Try block:
@@ -57,7 +60,7 @@ export default function SignUpForm({ alterUser }) {
               <label>Email</label>
               <input type='email' name='email'
                 value={formData.email}
-                  onChange={handleChange}
+                onChange={handleChange}
                 required
               />
             <label>Password</label>

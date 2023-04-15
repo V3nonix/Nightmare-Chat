@@ -10,7 +10,7 @@ export default function AuthPage({ alterUser }) {
     // Sets state:
     const [authType, setAuthType] = useState(false);
     // Event handler functions:
-    function handleClick(evt) {
+    function handleClick() {
         setAuthType(!authType);
     }
     // Rendered component:

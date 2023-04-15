@@ -35,7 +35,7 @@ async function create(req, res) {
         res.json(token);
     } catch (err) {
         // Error handler:
-        errorHandler('create', err, 500, res);
+        errorHandler(__dirname, __filename, 'create', err, 500, res);
     }
 }
 
@@ -65,7 +65,7 @@ async function login(req, res) {
         }
     } catch (err) {
         // Error handler:
-        errorHandler('login', err, 500, res);
+        errorHandler(__dirname, __filename, 'login', err, 500, res);
     }
 }
 
