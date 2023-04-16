@@ -1,11 +1,14 @@
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
+const http = require(`http`);
 // Requires and configures 'dotenv':
 require('dotenv').config();
 // Requires database configuration:
 require('./config/database');
 
+
+// Creates express app:
 const app = express();
 
 app.use(logger('dev'));
@@ -22,6 +25,11 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Express app running on port ${port}`);
 });
+
+// Creates server:
+const server = http.createServer(app);
+// Initializes websocket:
+require('./io').init(server)
 
 /* MOUNT API & OTHER ROUTES HERE */
 
