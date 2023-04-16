@@ -1,26 +1,20 @@
 // Requires Mongoose module and sets Schema shortcut:
 const Schema = require('mongoose').Schema;
 
-// Invite Schema:
-const inviteSchema = new Schema({
+// Request Schema:
+const requestSchema = new Schema({
     name: {type: String, required: true},
-    thumb: {type: String, default: ''},
     type: {type: String, required: true},
+    thumb: {type: String, default: ''},
     user: {
         type: Schema.Types.ObjectId,
         ref: "User",
         required: true
     },
-    id: String,
-    senderName: {type: String, required: true},
-    sender: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-        required: true
-    }
+    id: String
 }, {
     timestamps: true
 });
 
 // Exports inviteSchema as mongoose Schema:
-module.exports = inviteSchema;
+module.exports = requestSchema;

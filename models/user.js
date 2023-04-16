@@ -17,7 +17,7 @@ const userSchema = new Schema({
     avatar: { type: String, default: ''},
     email: {
       type: String,
-      unique: true,
+      unique: [true, 'An account with this email already exists!'],
       trim: true,
       lowercase: true,
       required: true
@@ -37,6 +37,13 @@ const userSchema = new Schema({
           return ret;
         }
     }
+});
+
+/* Chatroom Schema VIRTUALS */
+
+// Front-end userId:
+userSchema.virtual('userId').get(function() {
+  return this.id.slice(-6).toUpperCase();
 });
 
 // User save middleware:

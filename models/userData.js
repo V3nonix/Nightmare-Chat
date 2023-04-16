@@ -2,6 +2,10 @@
 const mongoose = require('mongoose');
 // Shortcut for mongoose.Schema:
 const Schema = mongoose.Schema;
+// Requires mongoose Schema(s):
+const inviteSchema = require('./schemas/invite');
+const requestSchema = require('./schemas/request');
+
 
 // Friend Schema:
 const friendSchema = new Schema({
@@ -54,7 +58,7 @@ const userDataSchema = new Schema({
             message: 'Maximum friends reached!'
         }        
     },
-    chatrooms: {
+    rooms: {
         type: [roomsEntrySchema],
         validate: {
             validator: function(arr) {
@@ -70,6 +74,24 @@ const userDataSchema = new Schema({
                 return arr.length <= 15
             }, 
             message: 'Maximum group chats reached!'
+        }
+    },
+    invites: {
+        type: [inviteSchema],
+        validate: {
+            validator: function(arr) {
+                return arr.length <= 25
+            }, 
+            message: 'Maximum invites reached!'
+        }
+    },
+    requests: {
+        type: [requestSchema],
+        validate: {
+            validator: function(arr) {
+                return arr.length <= 25
+            }, 
+            message: 'Maximum invites reached!'
         }
     },
     about: { type: String, default: '' }
