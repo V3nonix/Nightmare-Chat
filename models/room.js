@@ -49,7 +49,7 @@ const roomSchema = new Schema({
         type: [requestSchema],
         validate: {
             validator: function(arr) {
-                return arr.length <= 100
+                return arr.length <= 50
             }, 
             message: 'Maximum number of pending requests!'
         }
