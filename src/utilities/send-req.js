@@ -22,7 +22,23 @@ export default async function sendRequest(url, method = 'GET', payload = null) {
     // Fetches at provided URL with options:
     const res = await fetch(url, options);
     // If res.ok, returns response parsed from JSON:
-    if (res.ok) return res.json();
-    // If res.ok false (Status 4xx), returns error:
-    throw new Error('Bad Request');
+    if (res.ok) {
+      return res.json();
+    } else {
+        // If res.ok false, returns error:
+        if (res.status === 500) {
+            // Status 500:
+            throw new Error('Internal Server Error!');
+        } else if (res.status === 401) {
+            // Status 401:
+            throw new Error(`${res.status} ||| Unauthorized! |||`);
+        } else if (res.status < 500 && res.status > 300) {
+            // Status 4xx:
+            throw new Error(`${res.status} ||| Bad Request! |||`);
+        } else {
+            // Status ???:
+            throw new Error(`${res.status} ||| Unexpected Error! |||`);
+        }
+    }
 }
+

@@ -6,9 +6,12 @@ const usersCtrl = require('../../controllers/server/users');
 // Requires Auth middleware:
 const ensureLoggedIn = require('../../config/ensureLoggedIn');
 
+// GET /server/users/data
+router.get('/data', ensureLoggedIn, usersCtrl.getData);
+
 // POST /server/users
 router.post('/', usersCtrl.create);
-// POST /api/server/login
+// POST /server/users/login
 router.post('/login', usersCtrl.login);
 
 // Exports module as an Express router:

@@ -15,7 +15,7 @@ export function login(credentials) {
   return sendRequest(`${BASE_URL}/login`, 'POST', credentials);
 }
 
-// GETs token from BASE_URL/check-token endpoint:
-export function checkToken() {
-  return sendRequest(`${BASE_URL}/check-token`);
+// GETs userData from BASE_URL/data endpoint:
+export function getData() {
+  return sendRequest(`${BASE_URL}/data`);
 }

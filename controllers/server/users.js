@@ -61,7 +61,7 @@ async function login(req, res) {
         } else {
             // No actual error on the backend.
             // Returns 'Bad Credentials' to front end:
-            res.status(400).json('Bad Credentials');
+            res.status(400).json('Bad Credentials!');
         }
     } catch (err) {
         // Error handler:
@@ -69,8 +69,27 @@ async function login(req, res) {
     }
 }
 
+async function getData(req, res) {
+    try {
+        // Finds userData in database:
+        const userData = await UserData.findOne({ user: req.user._id });
+        // If userData appends to response:
+        if (userData) {
+            res.json(userData);
+        // If no userData sets response status:
+        } else {
+            res.status(404).json('Resource not found!');
+        }
+
+    } catch(err) {
+        // Error handler:
+        errorHandler(__dirname, __filename, 'fetchData', err, 500, res);        
+    }
+}
+
 // Exports module methods:
 module.exports = {
     create,
     login,
+    getData,
 };
