@@ -1,20 +1,24 @@
 // Requires Mongoose Model(s):
 
+
 // Requires JWT (JsonWebToken):
 const jwt = require('jsonwebtoken');
-// Imports websocket (server):
-const { Server } = require('socket.io');
+
+
+const rooms = {};
+const groups = {};
 
 function init(server) {
+    // Initializes socket.io at server instance:
     io = require('socket.io')(server);
     // Listens on server:
     io.listen(3001);
     // Tracks 
     io.on("connection", (socket) => {
-        console.log(`Connected: ${socket.id}`);
+        console.log(`Connected at room.io: ${socket.id}`);
       
         socket.on("disconnect", () => {
-          console.log(`Disconnected: ${socket.id}`);
+          console.log(`Disconnected at room.io: ${socket.id}`);
         });
     });
 }

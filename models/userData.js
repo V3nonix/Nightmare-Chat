@@ -3,11 +3,24 @@ const mongoose = require('mongoose');
 // Shortcut for mongoose.Schema:
 const Schema = mongoose.Schema;
 
+// Friend Schema:
+const friendSchema = new Schema({
+    name: { type: String, required: true },
+    avatar: String,
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    }
+}, {
+    timestamps: true
+});
+
 // ChatroomsEntry Schema:
-const chatroomsEntrySchema = new Schema({
+const roomsEntrySchema = new Schema({
     id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Chatroom',
+        ref: 'Room',
         required: true
     },
     name: { type: String, required: true },
@@ -15,10 +28,10 @@ const chatroomsEntrySchema = new Schema({
 });
 
 // ChatGroupsEntry Schema:
-const chatGroupsEntrySchema = new Schema({
+const groupsEntrySchema = new Schema({
     id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'ChatGroup',
+        ref: 'Group',
         required: true
     },
     name: { type: String, required: true },
@@ -32,24 +45,34 @@ const userDataSchema = new Schema({
         ref: "User",
         required: true
     },
-    chatrooms: {
-        type: [chatroomsEntrySchema],
+    friends: {
+        type: [friendSchema],
         validate: {
             validator: function(arr) {
-                return arr.length < 10
+                return arr.length <= 50
+            }, 
+            message: 'Maximum friends reached!'
+        }        
+    },
+    chatrooms: {
+        type: [roomsEntrySchema],
+        validate: {
+            validator: function(arr) {
+                return arr.length <= 10
             }, 
             message: 'Maximum chatrooms reached!'
         }
     },
     groups: {
-        type: [chatGroupsEntrySchema],
+        type: [groupsEntrySchema],
         validate: {
             validator: function(arr) {
-                return arr.length < 15
+                return arr.length <= 15
             }, 
             message: 'Maximum group chats reached!'
         }
     },
+    about: { type: String, default: '' }
 });
 
 // Exports userSchema as Mongoose Model:
