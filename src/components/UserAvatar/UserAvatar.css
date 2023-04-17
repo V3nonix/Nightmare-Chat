@@ -1,6 +1,6 @@
 .UserAvatar-big {
-    height: 13vmin;
-    width: 13vmin;
+    height: 20vmin;
+    width: 20vmin;
     border: .6vmin solid var(--accent-2);
     border-radius: 50%; 
 }

@@ -30,46 +30,7 @@ body {
   width: 100%;
 }
 
-.arrow-up {
-  width: 0; 
-  height: 0; 
-  border-left: 0.5rem solid transparent;
-  border-right: 0.5rem solid transparent;
-  border-bottom: 0.5rem solid var(--accent-1);
-}
-
-.arrow-down {
-  width: 0; 
-  height: 0; 
-  border-left: 0.5rem solid transparent;
-  border-right: 0.5rem solid transparent;
-  border-top: 0.5rem solid var(--accent-1);
-}
-
-button {
-  margin: 0.25vmin;
-  font-size: 1.25vmin;
-  color: var(--accent-2);
-  background-color: var(--background-1);
-  border-top: 0.1rem solid var(--accent-2);
-  border-left: 0.1rem solid var(--accent-1);
-  border-right: 0.1rem solid var(--accent-2);
-  border-bottom: 0.1rem solid var(--accent-1);
-  cursor: pointer;
-  padding: 0.25vmin;
-}
-
-button:hover {
-  box-shadow: 0 0 100px 100px rgba(231, 222, 206, 0.1) inset;
-  transform: scale(1.05);
-}
-
-.button-inv {
-  border-top: 0.1rem solid var(--accent-1);
-  border-left: 0.1rem solid var(--accent-2);
-  border-right: 0.1rem solid var(--accent-1);
-  border-bottom: 0.1rem solid var(--accent-2);
-}
+/* General Lists */
 
 .list-container {
   margin: 0.5rem;
@@ -82,7 +43,7 @@ button:hover {
 }
 
 .list-aside {
-  margin: 1.5rem 1rem 0.5rem 1rem;
+  margin: 1.5vmin 1.5vmin 1.5vmin 1.5vmin;
   background-color: var(--background-2);
   border-top: 0.1rem solid var(--accent-2);
   border-left: 0.1rem solid var(--accent-1);
@@ -91,28 +52,7 @@ button:hover {
   padding: 0.25rem;
 }
 
-.Logout {
-  background-color: var(--accent-3);
-  color: var(--text-dark);
-}
-
-.Logout:hover {
-  box-shadow: 0 0 100px 100px rgba(97, 19, 9, 0.63) inset;
-  transform: scale(1.05);
-}
-
-.button-red-dark {
-  border-top: 0.1rem solid var(--accent-4);
-  border-left: 0.1rem solid var(--accent-3);
-  border-right: 0.1rem solid var(--accent-4);
-  border-bottom: 0.1rem solid var(--accent-3);
-  color: var(--accent-3);
-}
-
-.button-red-dark:hover {
-  box-shadow: 0 0 100px 100px rgba(136, 19, 3, 0.364) inset;
-  transform: scale(1.1);
-}
+/* General Forms */
 
 button:disabled, form:invalid button[type="submit"] {
   cursor: not-allowed;
@@ -151,4 +91,101 @@ form {
 
 form > * {
   margin: 0.5rem;
+}
+
+/* General Button */
+
+button {
+  margin: 0.25vmin;
+  font-size: 1.25vmin;
+  color: var(--accent-2);
+  background-color: var(--background-1);
+  border-top: 0.1rem solid var(--accent-2);
+  border-left: 0.1rem solid var(--accent-1);
+  border-right: 0.1rem solid var(--accent-2);
+  border-bottom: 0.1rem solid var(--accent-1);
+  cursor: pointer;
+  padding: 0.25vmin;
+}
+
+button:hover {
+  box-shadow: 0 0 100px 100px rgba(231, 222, 206, 0.1) inset;
+  transform: scale(1.05);
+}
+
+/* General Button (Inverted) */
+
+.button-inv {
+  border-top: 0.1rem solid var(--accent-1);
+  border-left: 0.1rem solid var(--accent-2);
+  border-right: 0.1rem solid var(--accent-1);
+  border-bottom: 0.1rem solid var(--accent-2);
+}
+
+/* Delete Button */
+
+.delete-active {
+  align-self: center;
+  border-top: 0.1rem solid var(--accent-3);
+  border-left: 0.1rem solid var(--accent-4);
+  border-right: 0.1rem solid var(--accent-3);
+  border-bottom: 0.1rem solid var(--accent-4);
+  color: var(--accent-3);
+  box-shadow: 0 0 100px 100px rgba(136, 19, 3, 0.364) inset;
+  font-size: 1.5vmin;
+  margin-top: 1.5vmin;
+}
+
+.delete-inactive {
+  align-self: center;
+  border-top: 0.1rem solid var(--accent-3);
+  border-left: 0.1rem solid var(--accent-4);
+  border-right: 0.1rem solid var(--accent-3);
+  border-bottom: 0.1rem solid var(--accent-4);
+  color: var(--accent-3);
+  font-size: 1.5vmin;
+  margin-top: 1.5vmin;
+}
+
+.delete-inactive:hover {
+  box-shadow: 0 0 100px 100px rgba(136, 19, 3, 0.364) inset;
+  transform: scale(1.05);
+}
+
+.delete-active:hover {
+  box-shadow: 0 0 100px 100px rgba(49, 2, 2, 0.364) inset;
+  transform: scale(1.05);
+}
+
+/* Dark Red Button */
+
+.button-red-dark {
+  border-top: 0.1rem solid var(--accent-4);
+  border-left: 0.1rem solid var(--accent-3);
+  border-right: 0.1rem solid var(--accent-4);
+  border-bottom: 0.1rem solid var(--accent-3);
+  color: var(--accent-3);
+}
+
+.button-red-dark:hover {
+  box-shadow: 0 0 100px 100px rgba(136, 19, 3, 0.364) inset;
+  transform: scale(1.1);
+}
+
+/* Collapse Toggle Button */
+
+.arrow-up {
+  width: 0; 
+  height: 0; 
+  border-left: 0.5rem solid transparent;
+  border-right: 0.5rem solid transparent;
+  border-bottom: 0.5rem solid var(--accent-1);
+}
+
+.arrow-down {
+  width: 0; 
+  height: 0; 
+  border-left: 0.5rem solid transparent;
+  border-right: 0.5rem solid transparent;
+  border-top: 0.5rem solid var(--accent-1);
 }

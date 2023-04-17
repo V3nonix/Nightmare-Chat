@@ -4,7 +4,7 @@ import './ChatroomList.css';
 // Imports Components: 
 import ChatroomListItem from '../ChatroomListItem/ChatroomListItem';
 
-export default function ChatroomList({ rooms, navigate }) {
+export default function ChatroomList({ rooms, navigate, active }) {
   // Sets state:
   const [toggle, setToggle] = useState(false);
   const [roomsState, setRoomsState] = useState(rooms);
@@ -22,7 +22,7 @@ export default function ChatroomList({ rooms, navigate }) {
         {toggle &&
           <ul className='list'>
             {!rooms.length && <h5>You have no chat rooms!</h5>}
-            {rooms.map(room => <ChatroomListItem room={room} key={room.name} 
+            {rooms.map(room => <ChatroomListItem room={room} key={room.name} active={active}
               navigate={navigate} setRoomsState={setRoomsState} roomsState={roomsState}/>
             )}
           </ul>
