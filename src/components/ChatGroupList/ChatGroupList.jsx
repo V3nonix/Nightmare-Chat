@@ -17,7 +17,7 @@ export default function ChatGroupList({ groups, navigate }) {
       <button onClick={handleToggle}>
         <div className={ toggle ? 'arrow-up' : 'arrow-down'}/>
       </button>
-      <span>Chat Groups:</span>
+      <span> Chat Groups:</span>
       <div className='list-container'>
         {toggle &&
           <ul className='list'>
@@ -28,7 +28,7 @@ export default function ChatGroupList({ groups, navigate }) {
           </ul>
         }
         {groups.length <= 15 ?
-        <button>ADD GROUP?</button>
+        <button>ADD GROUP</button>
         :
         <h6>Maximum chat groups reached!</h6>
         }

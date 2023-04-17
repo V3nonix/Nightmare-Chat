@@ -17,17 +17,19 @@ export default function AuthPage({ alterUser }) {
     return (
         <main className='AuthPage'>
             <div>
-                <Logo />
                 <h3>Welcome to...</h3>
                 <h1>NIGHTMARE CHAT</h1>
-                <h3 onClick={handleClick}>{ authType ? 'LOGIN?' : 'SIGN-UP?'}</h3>
             </div>
+            <div>PlaceHolder</div>
             <div>
-            { authType ?
-                <SignUpForm alterUser={alterUser}/>
-            :
-                <LoginForm alterUser={alterUser}/>
-            }
+                <button onClick={handleClick} className='button-red-dark'>{ authType ? 'RETURNING DEVOTEE?' : 'NEW INITIATE?'}</button>
+                <div className='form-container'>
+                { authType ?
+                    <SignUpForm alterUser={alterUser}/>
+                :
+                    <LoginForm alterUser={alterUser}/>
+                }
+                </div>
             </div>
         </main>
     );

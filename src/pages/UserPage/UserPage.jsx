@@ -7,6 +7,7 @@ import { getData } from '../../utilities/server/users';
 import UserProfileContainer from '../../components/UserProfileContainer/UserProfileContainer';
 import ChatGroupList from '../../components/ChatGroupList/ChatGroupList';
 import ChatroomList from '../../components/ChatroomList/ChatroomList';
+import Inbox from '../../components/Inbox/Inbox';
 import Header from '../../components/Header/Header';
 import Loader from '../../components/Loader/Loader';
 
@@ -14,16 +15,13 @@ export default function UserPage({ user, alterUser, handleError, navigate }) {
     // Sets state:
     const [userData, setUserData] = useState();
     // Sets refference(s):
-    const inboxRef = useRef([]);
-    const sentRef = useRef([]);
+
     // Lifecycle method(s):
     useEffect(function() {
         // Defines tryData:
         async function tryData() {
             try {
                 const resUserData = await getData();
-                // Sets userData ref(s):
-                // inboxRef.current = 
                 // Sets userData state:
                 setUserData(resUserData);
             } catch(err) {
@@ -52,7 +50,10 @@ export default function UserPage({ user, alterUser, handleError, navigate }) {
                     }}/>
                 </aside>
                 <aside className='UserPage-aside'>
-                    <ChatroomList navigate={navigate} rooms={userData.rooms}/>
+                    <Inbox inbox={userData.comPackage.inbox} 
+                        inboxInfo={{fReqsNum: userData.comPackage.fReqsNum, 
+                        reqsNum:  userData.comPackage.reqsNum}}
+                    />
                     <ChatGroupList navigate={navigate} groups={userData.groups}/>
                 </aside>
             </main>
@@ -63,5 +64,3 @@ export default function UserPage({ user, alterUser, handleError, navigate }) {
         </>
     );
 }
-
-// about: userData.about

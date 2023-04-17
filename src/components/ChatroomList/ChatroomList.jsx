@@ -17,7 +17,7 @@ export default function ChatroomList({ rooms, navigate }) {
       <button onClick={handleToggle}>
         <div className={toggle ? 'arrow-up' : 'arrow-down'}/>
       </button>
-      <span>Chat Rooms:</span>
+      <span> Chat Rooms:</span>
       <div className='list-container'>
         {toggle &&
           <ul className='list'>

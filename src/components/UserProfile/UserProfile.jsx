@@ -8,13 +8,13 @@ export default function UserProfile({ userProfile }) {
       { userProfile.about ?
         <>
           <p>{userProfile.about}</p>
-          <button>EDIT?</button>
+          <button>EDIT</button>
         </> 
 
       :
         <>
           <p>Your about section is empty!</p>
-          <button>ADD?</button>
+          <button>ADD</button>
         </>
 
       }

@@ -4,6 +4,7 @@
     display: grid;
     grid-template-columns: 25% 50% 25%;
     justify-content: center;
+    width: 100vw;
 }
 
 .Header > * {

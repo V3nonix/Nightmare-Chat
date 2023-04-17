@@ -83,7 +83,7 @@ async function getData(req, res) {
 
     } catch(err) {
         // Error handler:
-        errorHandler(__dirname, __filename, 'fetchData', err, 500, res);        
+        errorHandler(__dirname, __filename, 'getData', err, 500, res);        
     }
 }
 

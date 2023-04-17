@@ -17,7 +17,7 @@ export default function NavBar({ type, alterUser, navigate }) {
     }
     function handleAddFriend() {
       // Navigates to /user:
-      navigate('/forms/add-friend');
+      // navigate('/forms/add-friend');
     }
     function handleUserPage() {
       // Navigates to /user:
@@ -28,8 +28,8 @@ export default function NavBar({ type, alterUser, navigate }) {
       { type === 'UserPage' ?
       <>
         <button onClick={handleCreateChat}>CREATE CHAT</button>
-        <button onClick={handleCreateChat}>ADD FRIEND</button>
-        <button onClick={handleLogOut}>LOGOUT</button>
+        <button onClick={handleAddFriend}>PLACEHOLDER</button>
+        <button onClick={handleLogOut} className='button-red-dark'>LOGOUT</button>
       </>
       :
       <>

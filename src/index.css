@@ -1,7 +1,8 @@
 :root {
   --accent-1: #5d4e3d;
   --accent-2: #96876f;
-  --accent-3: #916d46;
+  --accent-3: #84330b;
+  --accent-4: #5a2409;
   --text-dark: #0c0704;
   --text-light: #aea799;
   --text-light-aux: #e7dece;
@@ -10,13 +11,24 @@
   --background-3: #47423b;
 }
 
+@font-face {
+  font-family: Rye;
+  src: url(/public/fonts/Rye/Rye-Regular.ttf);
+}
+
 #root {
   height: 100%;
+  width: 100%;
+}
+
+* {
+  font-family: Rye, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 body {
   margin: 0;
   height: 100%;
+  width: 100%;
 }
 
 .arrow-up {
@@ -36,7 +48,8 @@ body {
 }
 
 button {
-  margin: 0.3rem;
+  margin: 0.25vmin;
+  font-size: 1.25vmin;
   color: var(--accent-2);
   background-color: var(--background-1);
   border-top: 0.1rem solid var(--accent-2);
@@ -77,4 +90,66 @@ button:hover {
   border-right: 0.1rem solid var(--accent-2);
   border-bottom: 0.1rem solid var(--accent-1);
   padding: 0.25rem;
+}
+
+.Logout {
+  background-color: var(--accent-3);
+  color: var(--text-dark);
+}
+
+.Logout:hover {
+  box-shadow: 0 0 100px 100px rgba(97, 19, 9, 0.63) inset;
+  transform: scale(1.05);
+}
+
+.button-red-dark {
+  border-top: 0.1rem solid var(--accent-4);
+  border-left: 0.1rem solid var(--accent-3);
+  border-right: 0.1rem solid var(--accent-4);
+  border-bottom: 0.1rem solid var(--accent-3);
+  color: var(--accent-3);
+}
+
+.button-red-dark:hover {
+  box-shadow: 0 0 100px 100px rgba(136, 19, 3, 0.364) inset;
+  transform: scale(1.1);
+}
+
+button:disabled, form:invalid button[type="submit"] {
+  cursor: not-allowed;
+  background-color: var(--accent-4);
+}
+
+input:focus {
+  border-top: 0.2rem solid var(--accent-4);
+  border-left: 0.2rem solid var(--accent-3);
+  border-right: 0.2rem solid var(--accent-4);
+  border-bottom: 0.2rem solid var(--accent-3);
+}
+
+.form-container {
+  margin: 0.5rem;
+  background-color: var(--background-3);
+  border-top: 0.1rem solid var(--accent-1);
+  border-left: 0.1rem solid var(--accent-2);
+  border-right: 0.1rem solid var(--accent-1);
+  border-bottom: 0.1rem solid var(--accent-2);
+  padding: 0.25rem;
+  height: min-content;
+  width: fit-content;
+}
+
+form {
+  padding: 1vmin;
+  margin: 0.5rem;
+  background-color: var(--background-2);
+  border-top: 0.1rem solid var(--accent-2);
+  border-left: 0.1rem solid var(--accent-1);
+  border-right: 0.1rem solid var(--accent-2);
+  border-bottom: 0.1rem solid var(--accent-1);
+  display: flexbox;
+}
+
+form > * {
+  margin: 0.5rem;
 }

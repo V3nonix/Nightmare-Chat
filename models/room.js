@@ -13,6 +13,8 @@ const roomSchema = new Schema({
     name: {
         type: String, 
         required: true,
+        maxLength: 64,
+        minLength: 3,
         unique: [true, 'A chatroom with this name already exists!']
     },
     thumb: String,

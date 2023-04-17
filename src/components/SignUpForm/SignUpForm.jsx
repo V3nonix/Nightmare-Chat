@@ -51,25 +51,27 @@ export default function SignUpForm({ alterUser }) {
         <div>
         <div className='SignUpForm'>
           <form autoComplete='off' onSubmit={handleSubmit}>
-            <label>Name</label>
+            <label>Name: </label>
               <input type='text' name='name'
                 value={formData.name}
                 onChange={handleChange}
+                placeholder={'Username'}
                 required
               />
-              <label>Email</label>
+              <label>Email: </label>
               <input type='email' name='email'
                 value={formData.email}
                 onChange={handleChange}
+                placeholder={'Email@email.com'}
                 required
               />
-            <label>Password</label>
+            <label>Password: </label>
               <input type='password' name='password'
                 value={formData.password}
                 onChange={handleChange}
                 required
               />
-            <label>Confirm</label>
+            <label>Confirm: </label>
               <input type='password' name='confirm'
                   value={formData.confirm}
                   onChange={handleChange}

@@ -36,17 +36,17 @@ export default function LoginForm({ alterUser }) {
     }
     // Rendered component:
     return (
-        <div>
-            <div className="form-container">
+            <div>
                 <form autoComplete="off" onSubmit={handleSubmit}>
-                    <label>Email</label>
-                    <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
-                    <label>Password</label>
+                    <label>Email: </label>
+                    <input type="text" name="email" 
+                        value={credentials.email} placeholder={'Email@email.com'}
+                        onChange={handleChange} required />
+                    <label>Password: </label>
                     <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
                     <button type="submit">LOG IN</button>
                 </form>
+                <p className="error-message">&nbsp;{error}</p>
             </div>
-            <p className="error-message">&nbsp;{error}</p>
-        </div>
     );
 }
