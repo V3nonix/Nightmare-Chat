@@ -1,0 +1,11 @@
+.UserAvatar-big {
+    height: 13vmin;
+    width: 13vmin;
+    border: .6vmin solid var(--accent-2);
+    border-radius: 50%; 
+}
+
+.UserAvatar-big:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}

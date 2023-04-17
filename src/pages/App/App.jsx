@@ -46,14 +46,15 @@ export default function App() {
       <>
         <Routes>
           <Route 
-            path='/user/:id' 
+            path='/user' 
             element={<UserPage user={user} 
+                      navigate={navigate}
                       alterUser={alterUser}
                       handleError={handleError}
                     />} 
           />
           <Route 
-            path='/room/:id' 
+            path='/room' 
             element={<ChatroomPage user={user} 
                       alterUser={alterUser}
                       handleError={handleError}
@@ -68,12 +69,12 @@ export default function App() {
           />
           <Route 
             path='/error/:id' 
-            element={<ErrorPage error = {error} 
+            element={<ErrorPage error={error} 
                       alterUser={alterUser}
                       handleError={handleError}
                     />} 
           />
-          <Route path="/*" element={<Navigate to="/user/:id"/>}/>
+          <Route path="/*" element={<Navigate to="/user"/>}/>
         </Routes>
       </> 
         :

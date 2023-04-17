@@ -18,6 +18,8 @@ export default function AuthPage({ alterUser }) {
         <main className='AuthPage'>
             <div>
                 <Logo />
+                <h3>Welcome to...</h3>
+                <h1>NIGHTMARE CHAT</h1>
                 <h3 onClick={handleClick}>{ authType ? 'LOGIN?' : 'SIGN-UP?'}</h3>
             </div>
             <div>

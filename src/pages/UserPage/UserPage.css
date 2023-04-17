@@ -1,0 +1,17 @@
+.UserPage {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    background-color: var(--background-1);
+    color: var(--text-light);
+}
+
+.UserPage-aside {
+    background-color: var(--background-3);
+}
+
+.UserPage-aside-center {
+    background-color: var(--background-1);
+    display: flex;
+    justify-content: center;
+}

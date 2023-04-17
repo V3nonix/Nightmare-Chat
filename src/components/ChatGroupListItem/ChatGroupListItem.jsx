@@ -1,8 +1,10 @@
 // Imports stylesheet(s):
 import './ChatGroupListItem.css';
 
-export default function ChatGroupListItem() {
+export default function ChatGroupListItem({ group, navigate }) {
   return (
-    <div>ChatGroupListItem</div>
+    <li className='ChatGroupListItem'>
+
+    </li>
   )
 }

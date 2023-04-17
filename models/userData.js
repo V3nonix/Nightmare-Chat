@@ -97,5 +97,7 @@ const userDataSchema = new Schema({
     about: { type: String, default: '' }
 });
 
+/* UserData Schema VIRTUALS */
+
 // Exports userSchema as Mongoose Model:
 module.exports = mongoose.model('UserData', userDataSchema);

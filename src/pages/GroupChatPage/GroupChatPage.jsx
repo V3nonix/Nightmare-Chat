@@ -2,6 +2,9 @@
 import './GroupChatPage.css';
 // Imports Users Utilities:
 
+// Imports Components: 
+
+import Loader from '../../components/Loader/Loader';
 
 export default function GroupChatPage() {
     // Event handler functions:
@@ -10,6 +13,7 @@ export default function GroupChatPage() {
     return (
         <main>
             <h1>GroupChatPage</h1>
+            <Loader /> 
         </main>
     );
 }

@@ -12,7 +12,9 @@ const userSchema = new Schema({
     name: {
         type: String, 
         required: true,
-        maxLength: 32
+        maxLength: 32,
+        minLength: 3,
+        unique: [true, 'An account with this name already exists!']
     },
     avatar: { type: String, default: ''},
     email: {
@@ -39,12 +41,8 @@ const userSchema = new Schema({
     }
 });
 
-/* Chatroom Schema VIRTUALS */
+/* User Schema VIRTUALS */
 
-// Front-end userId:
-userSchema.virtual('userId').get(function() {
-  return this.id.slice(-6).toUpperCase();
-});
 
 // User save middleware:
 userSchema.pre('save', async function(next) {

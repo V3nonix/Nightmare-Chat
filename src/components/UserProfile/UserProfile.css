@@ -1,0 +1,7 @@
+.UserProfile {
+    color: var(--text-light-aux);
+}
+
+span {
+    color: var(--text-light);
+}
