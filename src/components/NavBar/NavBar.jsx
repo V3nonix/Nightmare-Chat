@@ -24,19 +24,19 @@ export default function NavBar({ type, alterUser, navigate }) {
       navigate('/user');
     }
   return (
-    <nav className='NavBar'>
+    <>
       { type === 'UserPage' ?
-      <>
+      <nav className='NavBar'>
         <button onClick={handleCreateChat}>CREATE CHAT</button>
         <button onClick={handleAddFriend}>PLACEHOLDER</button>
         <button onClick={handleLogOut} className='button-red-dark'>LOGOUT</button>
-      </>
+      </nav>
       :
-      <>
+      <nav className='NavBar'>
         <button onClick={handleUserPage}>USER PAGE</button>
         <button onClick={handleLogOut}>LOGOUT</button>
-      </>    
+      </nav>    
       }
-    </nav>
+    </>
   )
 }

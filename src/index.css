@@ -17,8 +17,7 @@
 }
 
 #root {
-  height: 100%;
-  width: 100%;
+  margin: 0;
 }
 
 * {
@@ -27,7 +26,7 @@
 
 body {
   margin: 0;
-  height: 100%;
+  display: grid;
   width: 100%;
 }
 
@@ -56,8 +55,8 @@ button {
   border-left: 0.1rem solid var(--accent-1);
   border-right: 0.1rem solid var(--accent-2);
   border-bottom: 0.1rem solid var(--accent-1);
-  padding: 0.25rem;
   cursor: pointer;
+  padding: 0.25vmin;
 }
 
 button:hover {
