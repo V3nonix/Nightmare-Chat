@@ -5,9 +5,7 @@ const Schema = mongoose.Schema;
 // Requires mongoose Schema(s):
 const inviteSchema = require('./schemas/invite');
 const requestSchema = require('./schemas/request');
-// Requires mongoose Model(s):
-const Room = require('./room');
-const Group = require('./group');
+
 
 
 // Friend Schema:
@@ -168,38 +166,6 @@ const userDataSchema = new Schema({
 
 });
 
-/* UserData Schema STATICS */
-
-/* UserData Schema METHODS */
-
-// Updates user data:
-userDataSchema.methods.updateUserData = async function({ _id, tar, origin, data }) {
-    try {
-        const userData = await this.findOne({ user: _id });
-        if (origin === 'EXT') {
-            userData[tar].push(data);
-            return userData.save();         
-        } else if (Array.isArray(userData[tar])) {
-            userData[tar].push(data.int);
-            userData.validate(); 
-            if (data.type === 'room') {       
-                await Room.updateRoom({ _id, tar, origin: 'UDS', data: data.ext });
-                return userData.save();                
-            } else if (data.ext.type === 'group') {
-                await Group.updateGroup({ _id, tar, origin: 'UDS', data: data.ext });
-                return userData.save();  
-            } else {
-                //friends 
-            }
-        } else {
-            userData[tar] = data;
-            return userData.save();
-        }
-    } catch(err) {
-        return err;
-    } 
-}
-
 /* UserData Schema VIRTUALS */
 
 // Packages all reqs and invs:
@@ -234,6 +200,42 @@ userDataSchema.virtual('comPackage').get(function() {
     // Returns temp as package object:
     return {inbox: inboxTemp, sent: sentTemp, info: infoTemp};
 });
+
+/* UserData Schema STATICS */
+
+// Updates user data:
+userDataSchema.statics.updateUserData = async function({ userId, tar, origin, data }) {
+    try {
+        const userData = await this.findOne({ user: userId });
+        if (origin === 'EXT') {
+            userData[tar].push(data);
+            return userData.save();         
+        } else if (Array.isArray(userData[tar])) {
+            userData[tar].push(data.int);
+            userData.validate(); 
+            if (data.type === 'room') {
+                const Room = mongoose.model('Room');       
+                await Room.updateRoom({ userId, tar, origin: 'UDS', data: data.ext });
+                return userData.save();                
+            } else if (data.ext.type === 'group') {
+                const Group = mongoose.model('Group');   
+                await Group.updateGroup({ userId, tar, origin: 'UDS', data: data.ext });
+                return userData.save();  
+            } else {
+                //friends 
+            }
+        } else {
+            userData[tar] = data;
+            return userData.save();
+        }
+    } catch(err) {
+        return err;
+    } 
+}
+
+/* UserData Schema METHODS */
+
+
 
 // Exports userSchema as Mongoose Model:
 module.exports = mongoose.model('UserData', userDataSchema);

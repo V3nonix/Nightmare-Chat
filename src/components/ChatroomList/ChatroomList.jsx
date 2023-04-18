@@ -29,7 +29,7 @@ export default function ChatroomList({ rooms, navigate, active }) {
       { toggle &&
         <>
           {rooms.length <= 15 ?
-            <button>ADD ROOM</button>
+            <button onClick={() => navigate('/form/add-room')}>ADD ROOM</button>
             :
             <h5>Maximum chat rooms reached!</h5>
           }

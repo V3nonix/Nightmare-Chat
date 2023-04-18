@@ -1,14 +1,12 @@
 // Requires Mongoose module:
 const mongoose = require('mongoose');
+// Shortcut for mongoose.Schema:
+const Schema = mongoose.Schema;
 // Requires mongoose Schema(s):
 const memberSchema = require('./schemas/member');
 const messageSchema = require('./schemas/message');
 const inviteSchema = require('./schemas/invite');
 const requestSchema = require('./schemas/request');
-// Shortcut for mongoose.Schema:
-const Schema = mongoose.Schema;
-// Requires mongoose Model(s):
-const UserData = require('./userData');
 
 // Chat Group Schema:
 const groupSchema = new Schema({
@@ -77,21 +75,18 @@ const groupSchema = new Schema({
 
 /* ChatGroup Schema STATICS */
 
-//getChatGroup
-
-/* ChatGroup Schema METHODS */
-
 // Updates chat group invs and reqs:
-groupSchema.methods.updateGroup = async function({ _id, tar, origin, data }) {
+groupSchema.statics.updateGroup = async function({ userId, tar, origin, data }) {
     try {
-        const group = await this.findOne({ _id: data.ext.id });
+        const group = await this.findById(data.ext.id);
         if (origin === 'UDS') {
             group[tar].push(data);
             return group.save();         
         } else if (Array.isArray(room[tar])) {
             group[tar].push(data.ext);
             group.validate();
-            await UserData.updateUserData({ _id, tar, origin: 'EXT', data: data.int });
+            const UserData = mongoose.model('UserData');
+            await UserData.updateUserData({ userId, tar, origin: 'EXT', data: data.int });
             return group.save();
         } else {
             room[tar] = data;
@@ -101,6 +96,10 @@ groupSchema.methods.updateGroup = async function({ _id, tar, origin, data }) {
         return err;
     } 
 }
+
+/* ChatGroup Schema METHODS */
+
+
 
 // Exports groupSchema as Mongoose Model:
 module.exports = mongoose.model('Group', groupSchema);

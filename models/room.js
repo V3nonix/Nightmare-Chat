@@ -1,14 +1,12 @@
 // Requires Mongoose module:
 const mongoose = require('mongoose');
+// Shortcut for mongoose.Schema:
+const Schema = mongoose.Schema;
 // Requires mongoose Schema(s):
 const memberSchema = require('./schemas/member');
 const messageSchema = require('./schemas/message');
 const inviteSchema = require('./schemas/invite');
 const requestSchema = require('./schemas/request');
-// Shortcut for mongoose.Schema:
-const Schema = mongoose.Schema;
-// Requires mongoose Model(s):
-const UserData = require('./userData');
 
 // Chatroom Schema:
 const roomSchema = new Schema({
@@ -79,6 +77,28 @@ const roomSchema = new Schema({
 /* Chatroom Schema STATICS */
 
 //getChat
+
+// Updates chat room invs and reqs:
+roomSchema.statics.updateRoom = async function({ userId, tar, origin, data }) {
+    try {
+        const room = await this.findById(data.ext.id);
+        if (origin === 'UDS') {
+            room[tar].push(data);
+            return room.save();         
+        } else if (Array.isArray(room[tar])) {
+            room[tar].push(data.ext);
+            room.validate();
+            const UserData = mongoose.model('UserData');
+            await UserData.updateData({ userId, tar, origin: 'EXT', data: data.int });
+            return room.save();
+        } else {
+            room[tar] = data;
+            return room.save();            
+        }
+    } catch(err) {
+        return err;
+    } 
+}
 
 /* Chatroom Schema METHODS */
 
@@ -152,27 +172,6 @@ roomSchema.methods.setMember = async function(userId, newRole) {
     } else {
         return new Error('No such member exists!');
     }
-}
-
-// Updates chat room invs and reqs:
-roomSchema.methods.updateRoom = async function({ _id, tar, origin, data }) {
-    try {
-        const room = await this.findOne({ _id: data.ext.id });
-        if (origin === 'UDS') {
-            room[tar].push(data);
-            return room.save();         
-        } else if (Array.isArray(room[tar])) {
-            room[tar].push(data.ext);
-            room.validate();
-            await UserData.updateData({ _id, tar, origin: 'EXT', data: data.int });
-            return room.save();
-        } else {
-            room[tar] = data;
-            return room.save();            
-        }
-    } catch(err) {
-        return err;
-    } 
 }
 
 // Updates a chatroom's misc fields:

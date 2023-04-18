@@ -1,6 +1,8 @@
 // Requires Mongoose Model(s):
 const User = require('../../models/user');
 const UserData = require('../../models/userData');
+
+
 // Requires JWT (JsonWebToken):
 const jwt = require('jsonwebtoken');
 // Requires Bcrypt library:
@@ -80,7 +82,6 @@ async function getData(req, res) {
         } else {
             res.status(404).json('Resource not found!');
         }
-
     } catch(err) {
         // Error handler:
         errorHandler(__dirname, __filename, 'getData', err, 500, res);        
@@ -89,9 +90,9 @@ async function getData(req, res) {
 
 async function updateData(req, res) {
     try {
-        console.log(UserData.updateUserData);
-        console.log(req.body);
         const userData = await UserData.updateUserData(req.body);
+        console.log(userData[req.body.tar]);
+        res.json(userData[req.body.tar]);
     } catch(err) {
         // Error handler:
         errorHandler(__dirname, __filename, 'updateData', err, 500, res);            

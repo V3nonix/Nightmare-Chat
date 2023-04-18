@@ -39,59 +39,59 @@ export default function UserPage({ user, alterUser, handleError, navigate }) {
     // Rendered component:
     return (
         <>
-        <Header type={'UserPage'} alterUser={alterUser} navigate={navigate}/>
-        { userData ?
-            <> 
-                <main className='UserPage'>
-                    <aside className='UserPage-aside'>
-                        <button onClick={() => {setToggleDelete1(!toggleDelete1)}}  
-                        className={toggleDelete1 ? 'delete-active' : 'delete-inactive'
-                        }>
-                                DELETE MODE: {toggleDelete1 ? 'ON' : 'OFF'}
-                        </button>
-                        <ChatroomList navigate={navigate} rooms={userData.rooms} 
-                            dataId={userData._id}  active={toggleDelete1} />
-                        <ChatGroupList navigate={navigate} groups={userData.groups} 
-                            dataId={userData._id}  active={toggleDelete1} />
-                    </aside >
-                    <aside className='UserPage-aside-center'>
-                        <UserProfileContainer user={user} handleError={handleError} 
-                            userProfile={{created: new Date(user.createdAt), 
-                            about: userData.about, id: userData._id}}
-                        />
-                    </aside>
-                    <aside className='UserPage-aside'>
-                        <button onClick={() => {setToggleDelete2(!toggleDelete2)}} 
-                        className={toggleDelete2 ? 'delete-active' : 'delete-inactive'
-                        }>
-                            DELETE MODE: {toggleDelete2 ? 'ON' : 'OFF'}
-                        </button>
-                        <Inbox inbox={userData.comPackage.inbox} active={toggleDelete2}
-                            inboxInfo={{fReqsNum: userData.comPackage.fReqsNum, 
-                            reqsNum:  userData.comPackage.reqsNum}}
-                        />
-                        <SentList sent={userData.comPackage.sent} active={toggleDelete2} 
-                            sentInfo={{fInvsNum: userData.comPackage.fInvsNum, 
-                            invsNum:  userData.comPackage.invsNum}}
-                        />
-                    </aside>
-                </main>
-            </>
-            :
-            <>
-                <main className='UserPage'>
-                    <aside className='UserPage-aside'>
-                        <Loader /> 
-                    </aside >
-                    <aside className='UserPage-aside-center'>
-                        <Loader /> 
-                    </aside>
-                    <aside className='UserPage-aside'>
-                        <Loader /> 
-                    </aside>
-                </main>
-            </>
-        }
+            <Header type={'UserPage'} alterUser={alterUser} navigate={navigate}/>
+            { userData ?
+                <> 
+                    <main className='UserPage'>
+                        <aside className='UserPage-aside'>
+                            <button onClick={() => {setToggleDelete1(!toggleDelete1)}}  
+                            className={toggleDelete1 ? 'delete-active' : 'delete-inactive'
+                            }>
+                                    DELETE MODE: {toggleDelete1 ? 'ON' : 'OFF'}
+                            </button>
+                            <ChatroomList navigate={navigate} rooms={userData.rooms} 
+                                dataId={userData._id}  active={toggleDelete1} />
+                            <ChatGroupList navigate={navigate} groups={userData.groups} 
+                                dataId={userData._id}  active={toggleDelete1} />
+                        </aside >
+                        <aside className='UserPage-aside-center'>
+                            <UserProfileContainer user={user} handleError={handleError} 
+                                userProfile={{created: new Date(user.createdAt), 
+                                about: userData.about, id: userData._id}}
+                            />
+                        </aside>
+                        <aside className='UserPage-aside'>
+                            <button onClick={() => {setToggleDelete2(!toggleDelete2)}} 
+                            className={toggleDelete2 ? 'delete-active' : 'delete-inactive'
+                            }>
+                                DELETE MODE: {toggleDelete2 ? 'ON' : 'OFF'}
+                            </button>
+                            <Inbox inbox={userData.comPackage.inbox} active={toggleDelete2}
+                                inboxInfo={{fReqsNum: userData.comPackage.fReqsNum, 
+                                reqsNum:  userData.comPackage.reqsNum}}
+                            />
+                            <SentList sent={userData.comPackage.sent} active={toggleDelete2} 
+                                sentInfo={{fInvsNum: userData.comPackage.fInvsNum, 
+                                invsNum:  userData.comPackage.invsNum}}
+                            />
+                        </aside>
+                    </main>
+                </>
+                :
+                <>
+                    <main className='UserPage'>
+                        <aside className='UserPage-aside'>
+                            <Loader /> 
+                        </aside >
+                        <aside className='UserPage-aside-center'>
+                            <Loader /> 
+                        </aside>
+                        <aside className='UserPage-aside'>
+                            <Loader /> 
+                        </aside>
+                    </main>
+                </>
+            }
         </>
     );
 }

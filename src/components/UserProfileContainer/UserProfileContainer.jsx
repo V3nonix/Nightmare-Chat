@@ -10,7 +10,7 @@ export default function UserProfileContainer({ user, userProfile, handleError}) 
     <div className='UserProfileContainer'>
       <UserAvatar userAvatar={user.avatar}  type={1}/>
       <h5>{user.name}</h5>
-      <UserProfile userProfile={userProfile} handleError={handleError}/>
+      <UserProfile userProfile={userProfile} userId={user._id} handleError={handleError}/>
     </div>
   );
 }

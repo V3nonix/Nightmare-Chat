@@ -29,7 +29,7 @@ export default function ChatGroupList({ groups, navigate, active }) {
       { toggle &&
         <>
           {groups.length <= 15 ?
-            <button>ADD GROUP</button>
+            <button onClick={() => navigate('/form/add-group')}>ADD GROUP</button>
             :
             <h6>Maximum chat groups reached!</h6>
           }

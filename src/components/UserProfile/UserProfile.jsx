@@ -4,7 +4,7 @@ import './UserProfile.css';
 // Imports Component(s):
 import UserProfileForm from '../ProfileAboutForm/UserProfileForm';
 
-export default function UserProfile({ userProfile, handleError}) {
+export default function UserProfile({ userProfile, handleError, userId}) {
   // Sets state:
   const [userAbout, setUserAbout] = useState(userProfile.about);
   const [toggle, setToggle] = useState(false);
@@ -23,7 +23,7 @@ export default function UserProfile({ userProfile, handleError}) {
           <span> About:</span>
           { formOpen ? 
             <UserProfileForm  userAbout={userAbout} setUserAbout={setUserAbout}
-              setFormOpen={setFormOpen} handleError={handleError} id={userProfile.id}
+              setFormOpen={setFormOpen} handleError={handleError} userId={userId}
             />
           :
             <>
@@ -43,8 +43,3 @@ export default function UserProfile({ userProfile, handleError}) {
     </div>
   );
 }
-
-/*
-
-
-*/
