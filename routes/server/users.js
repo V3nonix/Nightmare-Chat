@@ -10,7 +10,7 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn');
 router.get('/data', ensureLoggedIn, usersCtrl.getData);
 
 // PUT /server/users/data
-router.put('/data', ensureLoggedIn, usersCtrl.updateUserData);
+router.put('/data', ensureLoggedIn, usersCtrl.updateData);
 
 // POST /server/users
 router.post('/', usersCtrl.create);

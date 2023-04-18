@@ -87,8 +87,9 @@ async function getData(req, res) {
     }
 }
 
-async function updateUserData(req, res) {
+async function updateData(req, res) {
     try {
+        console.log(UserData.updateUserData);
         console.log(req.body);
         const userData = await UserData.updateUserData(req.body);
     } catch(err) {
@@ -102,7 +103,7 @@ module.exports = {
     create,
     login,
     getData,
-    updateUserData,
+    updateData,
 };
 
 // ['friends', 'rooms', 'groups', 'invites', 'requests', 'friendReqs', 'friendInvs', 'about']
