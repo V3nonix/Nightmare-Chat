@@ -10,12 +10,10 @@ export default function SentList({ sent, sentInfo, active }) {
   const [fdInvsNum, setFdInvsNum] = useState(sentInfo.fdInvsNum);
   const [invsNum, setInvsNum] = useState(sentInfo.invsNum);
   // Event handler functions:
-  function handleToggle() {
-    setToggle(!toggle);
-  }
+
   return (
     <aside className='list-aside'>
-      <button onClick={handleToggle}>
+      <button onClick={() => setToggle(!toggle)}>
         <div className={toggle ? 'arrow-up' : 'arrow-down'}/>
       </button>
       <span> Sent:</span>

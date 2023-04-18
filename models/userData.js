@@ -150,7 +150,7 @@ const userDataSchema = new Schema({
             message: 'Maximum friend invites reached!'
         }
     },
-    about: { type: String, default: '' }
+    about: { type: String, maxLength: 750, default: '' }
 }, {
     // Ensures virtuals are serialized:
     toJSON: { 

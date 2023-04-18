@@ -1,0 +1,10 @@
+.FormPage {
+    margin: 0;
+    height: 90vh;
+    width: 100vw;
+    background-color: var(--background-1);
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

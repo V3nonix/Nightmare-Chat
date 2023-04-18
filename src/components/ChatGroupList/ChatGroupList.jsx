@@ -9,12 +9,10 @@ export default function ChatGroupList({ groups, navigate, active }) {
   const [toggle, setToggle] = useState(false);
   const [groupsState, setGroupsState] = useState(groups);
   // Event handler functions:
-  function handleToggle() {
-    setToggle(!toggle);
-  }
+  
   return (
     <aside className='list-aside'>
-      <button onClick={handleToggle}>
+      <button onClick={() => setToggle(!toggle)}>
         <div className={ toggle ? 'arrow-up' : 'arrow-down'}/>
       </button>
       <span> Chat Groups:</span>
@@ -27,12 +25,16 @@ export default function ChatGroupList({ groups, navigate, active }) {
             )}
           </ul>
         }
-        {groups.length <= 15 ?
-        <button>ADD GROUP</button>
-        :
-        <h6>Maximum chat groups reached!</h6>
-        }
       </div>
+      { toggle &&
+        <>
+          {groups.length <= 15 ?
+            <button>ADD GROUP</button>
+            :
+            <h6>Maximum chat groups reached!</h6>
+          }
+        </>
+      }
     </aside>
   );
 }

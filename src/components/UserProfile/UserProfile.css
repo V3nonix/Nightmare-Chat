@@ -5,3 +5,15 @@
 span {
     color: var(--text-light);
 }
+
+#user-about-container{
+    width: 45vmin;
+}
+
+#user-about-p {
+    width: 40vmin;
+    margin-top: 0.5vmin;
+    height: 22vmin;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+}

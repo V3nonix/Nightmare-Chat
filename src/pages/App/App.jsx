@@ -1,13 +1,12 @@
 import { useState } from 'react';
 // Imports 'react-router-dom' Component(s):
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
-// Imports stylesheet(s):
-import './App.css';
 // Imports Page Components:
 import AuthPage from '../AuthPage/AuthPage';
 import UserPage from '../UserPage/UserPage';
 import ChatroomPage from '../ChatroomPage/ChatroomPage';
 import GroupChatPage from '../GroupChatPage/GroupChatPage';
+import FormPage from '../FormPage/FormPage';
 import ErrorPage from '../ErrorPage/ErrorPage';
 // Imports Users Utilities:
 import { getUser } from '../../utilities/users-service';
@@ -41,7 +40,7 @@ export default function App() {
 
   // Rendered component:
   return (
-    <main className="App">
+    <>
       { user ?
       <>
         <Routes>
@@ -74,12 +73,20 @@ export default function App() {
                       handleError={handleError}
                     />} 
           />
+          <Route 
+            path='/form/:id' 
+            element={<FormPage user={user} 
+                      navigate={navigate}
+                      alterUser={alterUser}
+                      handleError={handleError}
+                    />} 
+          />
           <Route path="/*" element={<Navigate to="/user"/>}/>
         </Routes>
       </> 
         :
         <AuthPage alterUser={alterUser}/>
       }
-    </main>
+    </>
   )
 }

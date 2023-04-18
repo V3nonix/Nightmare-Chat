@@ -9,12 +9,10 @@ export default function ChatroomList({ rooms, navigate, active }) {
   const [toggle, setToggle] = useState(false);
   const [roomsState, setRoomsState] = useState(rooms);
   // Event handler functions:
-  function handleToggle() {
-    setToggle(!toggle);
-  }
+
   return (
     <aside className='list-aside'>
-      <button onClick={handleToggle}>
+      <button onClick={() => setToggle(!toggle)}>
         <div className={toggle ? 'arrow-up' : 'arrow-down'}/>
       </button>
       <span> Chat Rooms:</span>
@@ -27,12 +25,16 @@ export default function ChatroomList({ rooms, navigate, active }) {
             )}
           </ul>
         }
-        {rooms.length <= 15 ?
-        <button>ADD ROOM</button>
-        :
-        <h5>Maximum chat rooms reached!</h5>
-        }
       </div>
+      { toggle &&
+        <>
+          {rooms.length <= 15 ?
+            <button>ADD ROOM</button>
+            :
+            <h5>Maximum chat rooms reached!</h5>
+          }
+        </>
+      }
     </aside>
   );
 }

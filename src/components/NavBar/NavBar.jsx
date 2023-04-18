@@ -12,12 +12,12 @@ export default function NavBar({ type, alterUser, navigate }) {
         alterUser(null);
     }
     function handleCreateChat() {
-      // Navigates to /forms/create:
-      navigate('/forms/create');
+      // Navigates to /form/create-chat:
+      navigate('/form/create-chat');
     }
     function handleAddFriend() {
       // Navigates to /user:
-      // navigate('/forms/add-friend');
+      // navigate('/form/add-friend');
     }
     function handleUserPage() {
       // Navigates to /user:
@@ -31,10 +31,16 @@ export default function NavBar({ type, alterUser, navigate }) {
         <button onClick={handleAddFriend}>PLACEHOLDER</button>
         <button onClick={handleLogOut} className='button-red-dark'>LOGOUT</button>
       </nav>
+      : type === 'FormPage' ?
+      <nav className='NavBar'>
+        <button onClick={handleUserPage}>USER PAGE</button>
+        <button onClick={handleAddFriend}>PLACEHOLDER</button>
+        <button onClick={handleLogOut} className='button-red-dark'>LOGOUT</button>
+      </nav>  
       :
       <nav className='NavBar'>
         <button onClick={handleUserPage}>USER PAGE</button>
-        <button onClick={handleLogOut}>LOGOUT</button>
+        <button onClick={handleLogOut} className='button-red-dark'>LOGOUT</button>
       </nav>    
       }
     </>

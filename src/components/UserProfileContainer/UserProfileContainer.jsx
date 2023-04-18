@@ -4,13 +4,13 @@ import './UserProfileContainer.css';
 import UserProfile from '../UserProfile/UserProfile';
 import UserAvatar from '../UserAvatar/UserAvatar';
 
-export default function UserProfileContainer({ user, userProfile}) {
+export default function UserProfileContainer({ user, userProfile, handleError}) {
   // Rendered component:  
   return (
     <div className='UserProfileContainer'>
       <UserAvatar userAvatar={user.avatar}  type={1}/>
       <h5>{user.name}</h5>
-      <UserProfile userProfile={userProfile}/>
+      <UserProfile userProfile={userProfile} handleError={handleError}/>
     </div>
   );
 }
