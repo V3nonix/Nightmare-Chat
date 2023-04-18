@@ -19,3 +19,8 @@ export function login(credentials) {
 export function getData() {
   return sendRequest(`${BASE_URL}/data`);
 }
+
+// PUTs userData at BASE_URL/data endpoint:
+export function updateUserData(UDPackage) {
+  return sendRequest(`${BASE_URL}/data`, 'PUT', UDPackage);
+}

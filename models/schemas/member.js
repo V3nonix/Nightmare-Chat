@@ -5,11 +5,16 @@ const Schema = require('mongoose').Schema;
 const memberSchema = new Schema({
     name: {type: String, required: true},
     user: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "User",
         required: true
     },
-    role: {type: String, required: true, default: 'Member'}
+    role: {
+        type: String, 
+        required: true, 
+        default: 'Member',
+        enum: ['Member', 'Moderator', 'Admin', 'Creator', 'SUPER_USER']
+    }
 }, {
     timestamps: true
 });

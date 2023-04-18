@@ -87,9 +87,22 @@ async function getData(req, res) {
     }
 }
 
+async function updateUserData(req, res) {
+    try {
+        console.log(req.body);
+        const userData = await UserData.updateUserData(req.body);
+    } catch(err) {
+        // Error handler:
+        errorHandler(__dirname, __filename, 'updateData', err, 500, res);            
+    }
+}
+
 // Exports module methods:
 module.exports = {
     create,
     login,
     getData,
+    updateUserData,
 };
+
+// ['friends', 'rooms', 'groups', 'invites', 'requests', 'friendReqs', 'friendInvs', 'about']

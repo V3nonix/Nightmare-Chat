@@ -7,6 +7,8 @@ const inviteSchema = require('./schemas/invite');
 const requestSchema = require('./schemas/request');
 // Shortcut for mongoose.Schema:
 const Schema = mongoose.Schema;
+// Requires mongoose Model(s):
+const UserData = require('./userData');
 
 // Chatroom Schema:
 const roomSchema = new Schema({
@@ -76,7 +78,7 @@ const roomSchema = new Schema({
 
 /* Chatroom Schema STATICS */
 
-
+//getChat
 
 /* Chatroom Schema METHODS */
 
@@ -150,6 +152,27 @@ roomSchema.methods.setMember = async function(userId, newRole) {
     } else {
         return new Error('No such member exists!');
     }
+}
+
+// Updates chat room invs and reqs:
+roomSchema.methods.updateRoom = async function({ _id, tar, origin, data }) {
+    try {
+        const room = await this.findOne({ _id: data.ext.id });
+        if (origin === 'UDS') {
+            room[tar].push(data);
+            return room.save();         
+        } else if (Array.isArray(room[tar])) {
+            room[tar].push(data.ext);
+            room.validate();
+            await UserData.updateData({ _id, tar, origin: 'EXT', data: data.int });
+            return room.save();
+        } else {
+            room[tar] = data;
+            return room.save();            
+        }
+    } catch(err) {
+        return err;
+    } 
 }
 
 // Updates a chatroom's misc fields:

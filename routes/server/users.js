@@ -9,6 +9,9 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn');
 // GET /server/users/data
 router.get('/data', ensureLoggedIn, usersCtrl.getData);
 
+// PUT /server/users/data
+router.put('/data', ensureLoggedIn, usersCtrl.updateUserData);
+
 // POST /server/users
 router.post('/', usersCtrl.create);
 // POST /server/users/login

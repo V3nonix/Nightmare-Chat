@@ -6,12 +6,7 @@ const requestSchema = new Schema({
     name: {type: String, required: true},
     type: {type: String, required: true},
     thumb: {type: String, default: ''},
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-        required: true
-    },
-    id: String
+    id: {type: String, required: true}
 }, {
     timestamps: true
 });

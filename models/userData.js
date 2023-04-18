@@ -5,6 +5,9 @@ const Schema = mongoose.Schema;
 // Requires mongoose Schema(s):
 const inviteSchema = require('./schemas/invite');
 const requestSchema = require('./schemas/request');
+// Requires mongoose Model(s):
+const Room = require('./room');
+const Group = require('./group');
 
 
 // Friend Schema:
@@ -164,6 +167,38 @@ const userDataSchema = new Schema({
     }
 
 });
+
+/* UserData Schema STATICS */
+
+/* UserData Schema METHODS */
+
+// Updates user data:
+userDataSchema.methods.updateUserData = async function({ _id, tar, origin, data }) {
+    try {
+        const userData = await this.findOne({ user: _id });
+        if (origin === 'EXT') {
+            userData[tar].push(data);
+            return userData.save();         
+        } else if (Array.isArray(userData[tar])) {
+            userData[tar].push(data.int);
+            userData.validate(); 
+            if (data.type === 'room') {       
+                await Room.updateRoom({ _id, tar, origin: 'UDS', data: data.ext });
+                return userData.save();                
+            } else if (data.ext.type === 'group') {
+                await Group.updateGroup({ _id, tar, origin: 'UDS', data: data.ext });
+                return userData.save();  
+            } else {
+                //friends 
+            }
+        } else {
+            userData[tar] = data;
+            return userData.save();
+        }
+    } catch(err) {
+        return err;
+    } 
+}
 
 /* UserData Schema VIRTUALS */
 

@@ -2,6 +2,7 @@ import { useState } from 'react';
 // Imports stylesheet(s):
 import './UserProfileForm.css';
 // Imports Users Utilities:
+import { updateUserData } from '../../utilities/server/users';
 
 export default function UserProfileForm({ userAbout, setUserAbout, setFormOpen, handleError, id }) {
     // Sets state:
@@ -17,7 +18,7 @@ export default function UserProfileForm({ userAbout, setUserAbout, setFormOpen, 
         evt.preventDefault();
         try {
             // Awaits update userData service:
-            await update({ _id: id, about: formData });
+            await updateUserData({ _id: id, tar: 'about', origin: '', data: formData });
             // Sets userAbout state:
             setUserAbout(formData);
             setFormOpen(false);
