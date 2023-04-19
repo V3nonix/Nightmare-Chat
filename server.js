@@ -1,12 +1,12 @@
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
-const http = require(`http`);
 // Requires and configures 'dotenv':
 require('dotenv').config();
 // Requires database configuration:
 require('./config/database');
-
+// Require 'http':
+const http = require(`http`);
 
 // Creates express app:
 const app = express();

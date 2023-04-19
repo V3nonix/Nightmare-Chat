@@ -14,7 +14,6 @@ const userSchema = new Schema({
         required: true,
         maxLength: 32,
         minLength: 3,
-        unique: [true, 'An account with this name already exists!']
     },
     avatar: { type: String, default: ''},
     email: {

@@ -54,6 +54,7 @@ export default function SignUpForm({ alterUser }) {
             <label>Name: </label>
               <input type='text' name='name'
                 value={formData.name}
+                minLength='3' maxLength='32'
                 onChange={handleChange}
                 placeholder={'Username'}
                 required
