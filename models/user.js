@@ -40,8 +40,26 @@ const userSchema = new Schema({
     }
 });
 
+/* User Schema INDEX */
+
+userSchema.index({name: 'text'});
+
 /* User Schema VIRTUALS */
 
+
+
+/* User Schema STATICS */
+
+userSchema.statics.findUsersPartial = async function(txt) {
+    try {
+        const users = await this.find({$text: {$search: `${txt}`} }).limit(13);
+        return users;
+    } catch(err) {
+        return err;
+    }
+}
+
+/* User Schema MIDDLEWARE */
 
 // User save middleware:
 userSchema.pre('save', async function(next) {

@@ -19,10 +19,8 @@ export default function FormSearchComponent({ servicePackage, handleChange, user
     function HandleSearchSubmit(evt) {
 
     }
-    function HandleSearchToggle() {
-      setToggleSearch(!toggleSearch);
-
-    }
+  
+  // Rendered component:
   return (
     <>
       <div className='search-input-container'>

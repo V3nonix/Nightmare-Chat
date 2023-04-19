@@ -99,6 +99,17 @@ async function updateData(req, res) {
     }
 }
 
+async function findUsersPartial(req, res) {
+    try {
+        const userData = await UserData.updateUserData(req.body);
+        console.log(userData[req.body.tar]);
+        res.json(userData[req.body.tar]);
+    } catch(err) {
+        // Error handler:
+        errorHandler(__dirname, __filename, 'findUserPartial', err, 500, res);            
+    }    
+}
+
 // Exports module methods:
 module.exports = {
     create,
@@ -108,3 +119,5 @@ module.exports = {
 };
 
 // ['friends', 'rooms', 'groups', 'invites', 'requests', 'friendReqs', 'friendInvs', 'about']
+
+//limit(5);
