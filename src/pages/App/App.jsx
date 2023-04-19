@@ -53,7 +53,7 @@ export default function App() {
                     />} 
           />
           <Route 
-            path='/room' 
+            path='/room/:id' 
             element={<ChatroomPage user={user} 
                       alterUser={alterUser}
                       handleError={handleError}

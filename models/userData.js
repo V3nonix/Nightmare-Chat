@@ -81,6 +81,8 @@ const groupsEntrySchema = new Schema({
     thumb: { type: String }
 });
 
+/* MODEL */
+
 // UserData Schema:
 const userDataSchema = new Schema({ 
     user: {

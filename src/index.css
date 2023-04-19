@@ -57,20 +57,14 @@ body {
 .list-container {
   margin: 0.5rem;
   background-color: var(--background-1);
-  border-top: 0.1rem solid var(--accent-1);
-  border-left: 0.1rem solid var(--accent-2);
-  border-right: 0.1rem solid var(--accent-1);
-  border-bottom: 0.1rem solid var(--accent-2);
+  border: 0.1rem inset var(--accent-2);
   padding: 0.25rem;
 }
 
 .list-aside {
   margin: 1.5vmin 1.5vmin 1.5vmin 1.5vmin;
   background-color: var(--background-2);
-  border-top: 0.1rem solid var(--accent-2);
-  border-left: 0.1rem solid var(--accent-1);
-  border-right: 0.1rem solid var(--accent-2);
-  border-bottom: 0.1rem solid var(--accent-1);
+  border: 0.1rem outset var(--accent-2);
   padding: 0.25rem;
 }
 
@@ -84,10 +78,7 @@ button:disabled, form:invalid button[type="submit"] {
 .form-container {
   margin: 0.5rem;
   background-color: var(--background-3);
-  border-top: 0.1rem solid var(--accent-1);
-  border-left: 0.1rem solid var(--accent-2);
-  border-right: 0.1rem solid var(--accent-1);
-  border-bottom: 0.1rem solid var(--accent-2);
+  border: 0.1rem inset var(--accent-2);
   padding: 0.25rem;
   height: min-content;
   width: fit-content;
@@ -97,10 +88,7 @@ form {
   padding: 1vmin;
   margin: 0.5rem;
   background-color: var(--background-2);
-  border-top: 0.1rem solid var(--accent-2);
-  border-left: 0.1rem solid var(--accent-1);
-  border-right: 0.1rem solid var(--accent-2);
-  border-bottom: 0.1rem solid var(--accent-1);
+  border: 0.1rem outset var(--accent-2);
   display: flexbox;
 }
 
@@ -116,10 +104,7 @@ form > *:focus {
   margin: 0;
   resize: none;
   background-color: var(--background-1);
-  border-top: 0.1rem solid var(--accent-1);
-  border-left: 0.1rem solid var(--accent-2);
-  border-right: 0.1rem solid var(--accent-1);
-  border-bottom: 0.1rem solid var(--accent-2);
+  border: 0.1rem inset var(--accent-2);
   margin: 0 0 1vmin 0;
   color: var(--text-light-aux);
 }
@@ -128,6 +113,31 @@ form > *:focus {
   transform: scale(1.005);
 }
 
+.search-input-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0.25rem;
+  background-color: var(--background-1);
+  border: 0.1rem inset var(--accent-2);
+  padding: 0.25rem;
+  height: fit-content;
+  max-height: 25vmin;
+}
+
+.search-input-container > * {
+  margin: 0.5vmin;
+}
+
+/* Form Page */
+
+.FormPage-form {
+  display: flex;
+  flex-direction: column;
+  height: 50vmin;
+  width: 75vmin;
+}
+
+
 /* General Button */
 
 button {
@@ -135,10 +145,7 @@ button {
   font-size: 1.25vmin;
   color: var(--accent-2);
   background-color: var(--background-1);
-  border-top: 0.1rem solid var(--accent-2);
-  border-left: 0.1rem solid var(--accent-1);
-  border-right: 0.1rem solid var(--accent-2);
-  border-bottom: 0.1rem solid var(--accent-1);
+  border: 0.1rem outset var(--accent-2);
   cursor: pointer;
   padding: 0.25vmin;
 }
@@ -151,20 +158,14 @@ button:hover {
 /* General Button (Inverted) */
 
 .button-inv {
-  border-top: 0.1rem solid var(--accent-1);
-  border-left: 0.1rem solid var(--accent-2);
-  border-right: 0.1rem solid var(--accent-1);
-  border-bottom: 0.1rem solid var(--accent-2);
+  border: 0.1rem inset var(--accent-2);
 }
 
 /* Delete Button */
 
 .delete-active {
   align-self: center;
-  border-top: 0.1rem solid var(--accent-3);
-  border-left: 0.1rem solid var(--accent-4);
-  border-right: 0.1rem solid var(--accent-3);
-  border-bottom: 0.1rem solid var(--accent-4);
+  border: 0.1rem inset var(--accent-3);
   color: var(--accent-3);
   box-shadow: 0 0 100px 100px rgba(136, 19, 3, 0.364) inset;
   font-size: 1.5vmin;
@@ -173,10 +174,7 @@ button:hover {
 
 .delete-inactive {
   align-self: center;
-  border-top: 0.1rem solid var(--accent-3);
-  border-left: 0.1rem solid var(--accent-4);
-  border-right: 0.1rem solid var(--accent-3);
-  border-bottom: 0.1rem solid var(--accent-4);
+  border: 0.1rem outset var(--accent-3);
   color: var(--accent-3);
   font-size: 1.5vmin;
   margin-top: 1.5vmin;
@@ -195,10 +193,7 @@ button:hover {
 /* Dark Red Button */
 
 .button-red-dark {
-  border-top: 0.1rem solid var(--accent-4);
-  border-left: 0.1rem solid var(--accent-3);
-  border-right: 0.1rem solid var(--accent-4);
-  border-bottom: 0.1rem solid var(--accent-3);
+  border: 0.1rem outset var(--accent-3);
   color: var(--accent-3);
 }
 

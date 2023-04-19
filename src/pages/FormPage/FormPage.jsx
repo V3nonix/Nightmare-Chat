@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import './FormPage.css';
 // Imports Component(s):
 import Header from '../../components/Header/Header';
+import CreateChatForm from '../../components/CreateChatForm/CreateChatForm';
 // Imports Users Utilities:
 
 
@@ -18,7 +19,7 @@ export default function FormPage({ user, alterUser, handleError, navigate }) {
             <main className='FormPage'>
                 { id === 'create-chat' ?
                     <>
-                        <h1>TEST: create-chat</h1>
+                        <CreateChatForm user={user} navigate={navigate} type={'CGP'}/>
                     </>
                 : id === 'add-room' ?
                     <>
