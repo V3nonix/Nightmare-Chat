@@ -33,7 +33,7 @@ require('./io').init(server)
 
 /* MOUNT API & OTHER ROUTES HERE */
 
-app.use('/server/users', require('./routes/server/users'));
+app.use('/server/users/', require('./routes/server/users'));
 
 // Protected router(s):
 
@@ -41,10 +41,10 @@ app.use('/server/users', require('./routes/server/users'));
 // app.use('/server/groups', ensureLoggedIn, require('./routes/server/groups'));
 // app.use('/server/rooms', ensureLoggedIn, require('./routes/server/rooms'));
 /* API */
-// app.use('/api/assets', ensureLoggedIn, require('./routes/api/assets'));
+// app.use('server/api/assets', ensureLoggedIn, require('./routes/api/assets'));
 
 
 // Defines catch route:
 app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });

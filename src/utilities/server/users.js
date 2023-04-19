@@ -1,6 +1,6 @@
-// Endpoints:
+// Endpoint(s):
 const BASE_URL = '/server/users';
-// Imports:
+// Import(s):
 import sendRequest from '../send-req';
 
 /* All functions use sendRequest, and return the output. */
@@ -17,7 +17,7 @@ export function login(credentials) {
 
 // POSTs text query to BASE_URL/find-many endpoint:
 export function findUsersPartial(txt) {
-  return sendRequest(`${BASE_URL}/find-many`, 'POST', txt);
+  return sendRequest(`${BASE_URL}/find`, 'POST', txt);
 }
 
 // PUTs userData at BASE_URL/data endpoint:

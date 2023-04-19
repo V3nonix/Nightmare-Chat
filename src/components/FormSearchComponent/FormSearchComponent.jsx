@@ -14,14 +14,13 @@ export default function FormSearchComponent({ servicePackage, formData, setFormD
     const [finalResults, setFinalResults] = useState([]);
     // Event handler functions:
     function handleSearchChange(evt) {
-      console.log(servicePackage);
       setSearchInput(evt.target.value);
     }
-    async function HandleSearchSubmit(evt) {
+    async function HandleSearchSubmit() {
       try {
         if (servicePackage.act === 'NEW' || servicePackage.act === 'INV') {
-          console.log(formData);
-          const newResults = await findUsersPartial(searchInput);
+          console.log(searchInput);
+          const newResults = await findUsersPartial({txt: searchInput});
           console.log(newResults);
         }
       } catch(err) {
@@ -36,10 +35,10 @@ export default function FormSearchComponent({ servicePackage, formData, setFormD
         { toggleSearch ? 
         <div>
           <input type='text' value={searchInput}
-            minLength={ servicePackage.type === 'FRD' ? '3' : '1' } maxLength='64'onChange={handleSearchChange}
+            minLength='3' maxLength={ servicePackage.type === 'FRD' ? '32' : '64' } onChange={handleSearchChange}
             placeholder={'Search by name here!'} required
           />
-          <button onClick={HandleSearchSubmit} type='button'>SEARCH</button>
+          <button onClick={HandleSearchSubmit} type='button' disabled={searchInput.length < 3}>SEARCH</button>
         </div>
         :
         <>

@@ -40,10 +40,6 @@ const userSchema = new Schema({
     }
 });
 
-/* User Schema INDEX */
-
-userSchema.index({name: 'text'});
-
 /* User Schema VIRTUALS */
 
 
@@ -52,7 +48,8 @@ userSchema.index({name: 'text'});
 
 userSchema.statics.findUsersPartial = async function(txt) {
     try {
-        const users = await this.find({$text: {$search: `${txt}`} }).limit(13);
+        const rgx = new RegExp(txt);
+        const users = await this.find({ name: {$regex: rgx, $options: 'xi'} }).limit(13);
         return users;
     } catch(err) {
         return err;
