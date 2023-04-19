@@ -15,13 +15,10 @@ const initialForm = {
     error: ''
 };
 
-export default function CreateChatForm({ user, navigate, type }) {
-    // Sets servicePackage:
-    const servicePackage = { type, act: 'NEW', limit: 29 }
+export default function CreateChatForm({ user, navigate }) {
     // Sets state(s):
     const [formData, setFormData] = useState(initialForm);
-    // Sets state related variable(s):
-    //let disabled = () => {formData.password !== formData.confirm;
+    const [type, setType] = useState('CRM');
     // Event handler functions:
     function handleChange(evt) {
         setFormData({
@@ -30,6 +27,9 @@ export default function CreateChatForm({ user, navigate, type }) {
             error: ''
         });
     };
+    function toggleType() {
+      setType(`${type === 'CRM' ? 'CGP' : 'CRM'}`);
+    }
     async function handleSubmit(evt) {
         // Prevent default form submission: 
         evt.preventDefault();
@@ -57,6 +57,9 @@ export default function CreateChatForm({ user, navigate, type }) {
     // Rendered component:
     return (
         <div className='FormPage-container'>
+          <button onClick={toggleType} className='button-inv'>
+            {type === 'CRM' ? 'CREATE a Group Chat?' : 'CREATE a Chatroom?'}
+          </button>
           <form autoComplete='off' onSubmit={handleSubmit} className='FormPage-form'>
             <label>Chat{ type === 'room' ? 'room' : ' Group '} Name: </label>
               <input type='text' name='name'
@@ -75,7 +78,8 @@ export default function CreateChatForm({ user, navigate, type }) {
                 value={formData.description}
               />
             <label>Send Invites: </label>
-            <FormSearchComponent servicePackage={servicePackage} handleChange={handleChange}  />
+            <FormSearchComponent servicePackage={{ type, act: 'NEW', limit: type === 'CRM' ? 29 : 9}} 
+              handleChange={handleChange} formData={formData} setFormData={setFormData}/>
             <button type='submit' >CREATE</button>
           </form>
           {formData.error && <p className='error-message'>&nbsp;{formData.error}</p>}

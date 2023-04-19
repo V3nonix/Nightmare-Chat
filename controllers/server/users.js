@@ -101,9 +101,13 @@ async function updateData(req, res) {
 
 async function findUsersPartial(req, res) {
     try {
-        const userData = await UserData.updateUserData(req.body);
-        console.log(userData[req.body.tar]);
-        res.json(userData[req.body.tar]);
+        if (req.body.txt.length > 3) {
+            const users = await User.findUsersPartial(req.body);
+            console.log(users);
+            res.json(users);
+        } else {
+            res.status(400).json('Invalid Request!');
+        }
     } catch(err) {
         // Error handler:
         errorHandler(__dirname, __filename, 'findUserPartial', err, 500, res);            
@@ -116,6 +120,7 @@ module.exports = {
     login,
     getData,
     updateData,
+    findUsersPartial,
 };
 
 // ['friends', 'rooms', 'groups', 'invites', 'requests', 'friendReqs', 'friendInvs', 'about']

@@ -3,10 +3,10 @@ import { useState } from 'react';
 import './FormSearchComponent.css';
 // Imports Component(s):
 import SearchResultsList from '../SearchResultList/SearchResultsList';
-// Imports Users Utilities:
+// Imports Utilities:
+import { findUsersPartial } from '../../utilities/server/users';
 
-
-export default function FormSearchComponent({ servicePackage, handleChange, userId }) {
+export default function FormSearchComponent({ servicePackage, formData, setFormData, userId }) {
     // Sets state(s):
     const [searchInput, setSearchInput] = useState('');
     const [toggleSearch, setToggleSearch] = useState(true);
@@ -14,10 +14,19 @@ export default function FormSearchComponent({ servicePackage, handleChange, user
     const [finalResults, setFinalResults] = useState([]);
     // Event handler functions:
     function handleSearchChange(evt) {
+      console.log(servicePackage);
       setSearchInput(evt.target.value);
     }
-    function HandleSearchSubmit(evt) {
-
+    async function HandleSearchSubmit(evt) {
+      try {
+        if (servicePackage.act === 'NEW' || servicePackage.act === 'INV') {
+          console.log(formData);
+          const newResults = await findUsersPartial(searchInput);
+          console.log(newResults);
+        }
+      } catch(err) {
+        setFormData({ ...formData, error: `${err}` });
+      }
     }
   
   // Rendered component:
@@ -30,7 +39,7 @@ export default function FormSearchComponent({ servicePackage, handleChange, user
             minLength={ servicePackage.type === 'FRD' ? '3' : '1' } maxLength='64'onChange={handleSearchChange}
             placeholder={'Search by name here!'} required
           />
-          <button onClick={HandleSearchSubmit}>SEARCH</button>
+          <button onClick={HandleSearchSubmit} type='button'>SEARCH</button>
         </div>
         :
         <>
@@ -53,7 +62,6 @@ export default function FormSearchComponent({ servicePackage, handleChange, user
 
         </ul>
       </div>
-
     </>
   );
 }

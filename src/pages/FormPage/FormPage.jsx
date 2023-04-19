@@ -19,7 +19,7 @@ export default function FormPage({ user, alterUser, handleError, navigate }) {
             <main className='FormPage'>
                 { id === 'create-chat' ?
                     <>
-                        <CreateChatForm user={user} navigate={navigate} type={'CGP'}/>
+                        <CreateChatForm user={user} navigate={navigate}/>
                     </>
                 : id === 'add-room' ?
                     <>

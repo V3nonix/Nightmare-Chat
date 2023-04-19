@@ -15,12 +15,18 @@ export function login(credentials) {
   return sendRequest(`${BASE_URL}/login`, 'POST', credentials);
 }
 
-// GETs userData from BASE_URL/data endpoint:
-export function getData() {
-  return sendRequest(`${BASE_URL}/data`);
+// POSTs text query to BASE_URL/find-many endpoint:
+export function findUsersPartial(txt) {
+  return sendRequest(`${BASE_URL}/find-many`, 'POST', txt);
 }
 
 // PUTs userData at BASE_URL/data endpoint:
 export function updateUserData(UDPackage) {
   return sendRequest(`${BASE_URL}/data`, 'PUT', UDPackage);
 }
+
+// GETs userData from BASE_URL/data endpoint:
+export function getData() {
+  return sendRequest(`${BASE_URL}/data`);
+}
+
