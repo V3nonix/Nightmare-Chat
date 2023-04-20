@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 // Shortcut for mongoose.Schema:
 const Schema = mongoose.Schema;
 // Requires mongoose Schema(s):
+const messageSchema = require('./schemas/message');
 
 const globalSchema = new Schema({
     active: {
@@ -10,7 +11,7 @@ const globalSchema = new Schema({
         ref: "User"
     },
     messages: { 
-        type : Array , 
+        type : [messageSchema], 
         default : [],
         validate: {
             validator: function(arr) {

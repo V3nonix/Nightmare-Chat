@@ -3,15 +3,12 @@ import * as usersService from './utilities/usersService';
 // Declares socket to
 const socket = window.io();
 // Initializes state setter to null:
-let setChat = null;
+// let setChat = null;
+let setGloabl = null;
 
 // Registers state setter(s):
-export function registerSetChat(fnct) {
-    setChat = fnct;
-}
-
 export function registerSetGlobal(fnct) {
-    setGloabl = fnct;
+    setGlobal = fnct;
 }
 
 /* Emits to server: */
@@ -23,15 +20,6 @@ export function enterGlobal() {
     });
 }
 
-// Enters a chat:
-export function enterChat({chatId, type}) {
-    socket.emit('enter-chat', {
-        token: usersService.getToken(),
-        chatId,
-        type
-    });
-}
-
 // Sends a message in public:
 export function sendGlobal(msg) {
     socket.emit('send-global', {
@@ -40,7 +28,37 @@ export function sendGlobal(msg) {
     });
 }
 
+// Exits global (temp):
+export function exitGlobal() {
+    socket.emit('exit-global', usersService.getToken());
+}
+
+// Recieves from server:
+socket.on('update-global', function(global) {
+    setGlobal(global);
+});
+
+// ICE BOX //
+/* 
+
+// Registers state setter(s):
+
+export function registerSetChat(fnct) {
+    setChat = fnct;
+}
+
+// Enters a chat:
+
+export function enterChat({chatId, type}) {
+    socket.emit('enter-chat', {
+        token: usersService.getToken(),
+        chatId,
+        type
+    });
+}
+
 // Sends a message in a chat:
+
 export function sendChat(msg) {
     socket.emit('send-chat', {
         token: usersService.getToken(),
@@ -49,6 +67,7 @@ export function sendChat(msg) {
 }
 
 // Adds a target user to a chat:
+
 export function invite(tarUser) {
     socket.emit('invite', {
         token: usersService.getToken(),
@@ -57,6 +76,7 @@ export function invite(tarUser) {
 }
 
 // Sets a target member to a role:
+
 export function set(tarMember) {
     socket.emit('set', {
         token: usersService.getToken(),
@@ -66,6 +86,7 @@ export function set(tarMember) {
 
 
 // Removes a target member from a chat:
+
 export function remove(tarMember) {
     socket.emit('remove', {
         token: usersService.getToken(),
@@ -74,32 +95,10 @@ export function remove(tarMember) {
 }
 
 // Exits a chat (temp):
+
 export function exitChat() {
     socket.emit('exit-chat', usersService.getToken());
 }
-
-// Exits a chat (temp):
-export function exitGlobal() {
-    socket.emit('exit-global', usersService.getToken());
-}
-
-// Leaves a chat (perm):
-export function leave() {
-    socket.emit('leave', usersService.getToken());
-}
-
-
-// Recieves from server:
-socket.on('update-chat', function(chat) {
-    setChat(chat);
-});
-
-socket.on('update-global', function(global) {
-    setGlobal(global);
-});
-
-// ICE BOX //
-/* 
 
 // Deletes a join Request in chat inbox:
 
@@ -136,5 +135,17 @@ export function edit(tarProp) {
         tarProp
     });
 }
+
+// Leaves a chat (perm):
+
+export function leave() {
+    socket.emit('leave', usersService.getToken());
+}
+
+// Recieves from server:
+
+socket.on('update-chat', function(chat) {
+    setChat(chat);
+});
 
 */

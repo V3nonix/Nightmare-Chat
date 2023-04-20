@@ -2,14 +2,12 @@
 const Room = require('./models/room');
 const Group = require('./models/group');
 const Global = require('./models/global');
-// Requires Mongoose Schema(s):
-const messageSchema = require('./models/schemas/message');
 // Requires JWT (JsonWebToken):
 const jwt = require('jsonwebtoken');
 
 const chats = {};
 
-const global = {}
+const globalLocal = {}
 
 function init(server) {
     // Initializes socket.io at server instance:
@@ -23,16 +21,16 @@ function init(server) {
         socket.on('enter-global', async function(token){
             const user = await validateToken(token);
             if (!user) return;
-            let global = getGlobal();
+            let global = globalLocal;
             if (!global) global = await fetchGlobal();
-            socket.join(chat._id.toString());
-            chats[chat._id.toString()] = chat;
-            io.to(chat._id.toString()).emit('update-chat', chat);
+            socket.join('GLOBAL');
+            io.to('GLOBAL').emit('update-global', global);
         });
 
         socket.on('send-global', async function({token, msg}){
             const user = await validateToken(token);
             if (!user) return;
+            let 
         });
 
         socket.on('exit-global', async function(token){
@@ -40,69 +38,16 @@ function init(server) {
             if (!user) return;
         });
 
-        /*-- CHAT --*/
 
-        socket.on('enter-chat', async function({token, chatId, type}){
-            const user = await validateToken(token);
-            if (!user) return;
-            let chat = findLocalChat(chatId);
-            if (!chat) chat = await fetchChat(chatId, type, user);
-            if (chat) {
-                socket.join(chat._id.toString());
-                chats[chat._id.toString()] = chat;
-                io.to(chat._id.toString()).emit('update-chat', chat);
-            }
-        });
 
-        socket.on('send-chat', async function({token, msg}){
-            const user = await validateToken(token);
-            if (!user) return;
-        });
 
-        socket.on('invite', async function({token, tarUser}){
-            const user = await validateToken(token);
-            if (!user) return;
-        });
-
-        socket.on('set', async function({token, tarMember}){
-            const user = await validateToken(token);
-            if (!user) return;
-        });
-
-        socket.on('remove', async function({token, tarMember}){
-            const user = await validateToken(token);
-            if (!user) return;
-        });
-
-        socket.on('exit-chat', async function(token){
-            const user = await validateToken(token);
-            if (!user) return;
-        });
-
-        socket.on('leave', async function(token){
-            const user = await validateToken(token);
-            if (!user) return;
-        });
     });
 }
 
 
 /* HELPERS: */
 
-function findLocalChat(user) {
-    let chatsArr = Object.values(chats);
-    const chat = chatsArr.find(c => c.active.some(m => m.user == user._id));
-    return chat;
-}
 
-async function fetchChat(chatId, type, user) {
-    let chat;
-    const temp = await (type === 'room' ? Room.findById(chatId) : Group.findById(chatId));
-    if (temp.members.some(m => m.user.toString() === user._id.toString())) {
-      chat = temp;
-    }
-    return chat;
-}
 
 // Ensures a token has not been altered by checking against SECRET.
 // Then returns decoded user (Token is NOT in Auth header):
@@ -122,6 +67,51 @@ module.exports = {
 
 // ICE BOX //
 /* 
+
+    /-- CHAT --/
+
+    socket.on('enter-chat', async function({token, chatId, type}){
+        const user = await validateToken(token);
+        if (!user) return;
+        let chat = findLocalChat(chatId);
+        if (!chat) chat = await fetchChat(chatId, type, user);
+        if (chat) {
+            socket.join(chat._id.toString());
+            chats[chat._id.toString()] = chat;
+            io.to(chat._id.toString()).emit('update-chat', chat);
+        }
+    });
+
+    socket.on('send-chat', async function({token, msg}){
+        const user = await validateToken(token);
+        if (!user) return;
+    });
+
+    socket.on('invite', async function({token, tarUser}){
+        const user = await validateToken(token);
+        if (!user) return;
+    });
+
+    socket.on('set', async function({token, tarMember}){
+        const user = await validateToken(token);
+        if (!user) return;
+    });
+
+    socket.on('remove', async function({token, tarMember}){
+        const user = await validateToken(token);
+        if (!user) return;
+    });
+
+    socket.on('exit-chat', async function(token){
+        const user = await validateToken(token);
+        if (!user) return;
+    });
+
+    socket.on('leave', async function(token){
+        const user = await validateToken(token);
+        if (!user) return;
+    });
+
     socket.on('remove', async function({token, tarReq}){
         const user = await validateToken(token);
         if (!user) return; 
@@ -140,6 +130,23 @@ module.exports = {
     socket.on('delete', async function({token, chatId}){
         const user = await validateToken(token);
         if (!user) return; 
-    });    
+    });   
+    
+    /- HELPERS: -/
+
+    function findLocalChat(user) {
+        let chatsArr = Object.values(chats);
+        const chat = chatsArr.find(c => c.active.some(m => m.user == user._id));
+        return chat;
+    }
+
+    async function fetchChat(chatId, type, user) {
+        let chat;
+        const temp = await (type === 'room' ? Room.findById(chatId) : Group.findById(chatId));
+        if (temp.members.some(m => m.user.toString() === user._id.toString())) {
+        chat = temp;
+        }
+        return chat;
+    }
 
 */
