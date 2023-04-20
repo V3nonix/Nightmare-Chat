@@ -39,7 +39,7 @@ app.use('/server/users/', require('./routes/server/users'));
 
 /* SERVER */
 // app.use('/server/groups', ensureLoggedIn, require('./routes/server/groups'));
-// app.use('/server/rooms', ensureLoggedIn, require('./routes/server/rooms'));
+app.use('/server/rooms', ensureLoggedIn, require('./routes/server/rooms'));
 /* API */
 // app.use('server/api/assets', ensureLoggedIn, require('./routes/api/assets'));
 

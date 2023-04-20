@@ -1,7 +1,7 @@
 import { useState } from 'react';
 // Imports stylesheet(s):
 import './CreateChatForm.css';
-// Imports Users Utilities:
+// Imports Utilities:
 
 // Imports Component(s):
 import FormSearchComponent from '../FormSearchComponent/FormSearchComponent';
@@ -45,9 +45,16 @@ export default function CreateChatForm({ user, navigate }) {
             members: [],
             invites: formData.invites,
           };
-          // Async chat creation:
-          const createRes = await createChat({ type, data: createData});
-          // Sets user state to new user:
+          let createRes;
+          if (type === CRM) {
+            // Async Chatroom creation:
+            createRes = await createChatroom({ type, data: createData});
+          } else {
+            // Async ChatGroup creation:
+            createRes = await createChatGroup({ type, data: createData});
+          }
+
+          // Navigates to chat path:
           navigate(`${ type === 'CRM' ? 'room' : 'group' }/${createRes}`);
         } catch(err) {
           // Error catch: 
