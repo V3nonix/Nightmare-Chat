@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { enterGlobal, sendGlobal, exitGlobal, registerSetGlobal } from "../../socket";
+import * as socket from "../../socket";
 import Loader from "../../components/Loader/Loader";
 import Header from "../../components/Header/Header";
 
@@ -13,12 +13,14 @@ export default function GlobalChatPage({ user, alterUser, navigate }) {
     });
     // Lifecycle method(s):
     useEffect(() => {
-        registerSetGlobal(setGlobal);
+        socket.registerSetGlobal(setGlobal);
         if (user) {
-          enterGlobal();
+            socket.connect();
+            socket.enterGlobal();
         }
         return () => {
-          exitGlobal();
+            socket.exitGlobal();
+            socket.disconnect();
         };
     }, [user]);
     // Event handler functions:
@@ -32,7 +34,7 @@ export default function GlobalChatPage({ user, alterUser, navigate }) {
     function handleSendMsg(evt) {
         // Prevent default form submission: 
         evt.preventDefault();
-        sendGlobal(msg);
+        socket.sendGlobal(msg);
         setMsg({ 
             name: user.name,
             user: user._id,

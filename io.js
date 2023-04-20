@@ -1,17 +1,18 @@
 // Requires Mongoose Model(s):
-const Room = require('./models/room');
-const Group = require('./models/group');
+// const Room = require('./models/room');
+// const Group = require('./models/group');
 const Global = require('./models/global');
 // Requires JWT (JsonWebToken):
 const jwt = require('jsonwebtoken');
 
-const chats = {};
+// const chats = {};
 
-const globalLocal = {}
+let globalLocal = null;
 
-function init(server) {
+function init(io) {
     // Initializes socket.io at server instance:
-    io = require('socket.io')(server);
+
+    console.log(io.engine.clientsCount);
 
     io.on('connection', function(socket) {
         console.log(`Connected at socket.io: ${socket.id}`);
@@ -23,31 +24,28 @@ function init(server) {
             if (!user) return;
             let global = globalLocal;
             if (!global) global = await fetchGlobal();
-            socket.join('GLOBAL');
-            io.to('GLOBAL').emit('update-global', global);
+            socket.join('NIGHTMARE');
+            console.log(`User ${user.name} has connected to global!`)
+            io.to('NIGHTMARE').emit('update-global', global);
         });
 
         socket.on('send-global', async function({token, msg}){
             const user = await validateToken(token);
             if (!user) return;
-            let 
+            let global = globalLocal;
+            if (global.messages.length === 300) global.messages.pop();
+            global.messages.push(msg);
         });
 
         socket.on('exit-global', async function(token){
             const user = await validateToken(token);
             if (!user) return;
         });
-
-
-
-
     });
 }
 
 
 /* HELPERS: */
-
-
 
 // Ensures a token has not been altered by checking against SECRET.
 // Then returns decoded user (Token is NOT in Auth header):
@@ -62,7 +60,7 @@ function validateToken(token) {
 
 // Exports module methods:
 module.exports = {
-    init
+    init,
 }
 
 // ICE BOX //

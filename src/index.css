@@ -14,7 +14,8 @@
 
 @font-face {
   font-family: Rye;
-  src: url(/fonts/Rye/Rye-Regular.ttf);
+  src: local('Rye-Regular'),
+    url("./fonts/Rye-Regular.ttf") format('truetype');
 }
 
 #root {
