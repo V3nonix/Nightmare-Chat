@@ -1,7 +1,7 @@
 // Imports stylesheet(s):
 import './NavBar.css';
 // Imports Users Utilities:
-import { logOut } from '../../utilities/users-service';
+import { logOut } from '../../utilities/usersService';
 
 export default function NavBar({ type, alterUser, navigate }) {
     // Event handler functions:

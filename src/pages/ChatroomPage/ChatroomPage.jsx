@@ -1,7 +1,7 @@
 // Imports stylesheet(s):
 import './ChatroomPage.css';
 // Imports websocket:
-import { socket } from '../../socket';
+// import { socket } from '../../socket';
 // Imports Users Utilities:
 
 

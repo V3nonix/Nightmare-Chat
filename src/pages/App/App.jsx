@@ -9,7 +9,7 @@ import GroupChatPage from '../GroupChatPage/GroupChatPage';
 import FormPage from '../FormPage/FormPage';
 import ErrorPage from '../ErrorPage/ErrorPage';
 // Imports Users Utilities:
-import { getUser } from '../../utilities/users-service';
+import { getUser } from '../../utilities/usersService';
 
 export default function App() {
   // Sets state:
