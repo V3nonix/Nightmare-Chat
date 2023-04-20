@@ -57,29 +57,48 @@ export default function CreateChatForm({ user, navigate }) {
     // Rendered component:
     return (
         <div className='FormPage-container'>
-          <button onClick={toggleType} className='button-inv'>
+          <h3>{type === 'CRM' ? 'CHATROOM' : 'GROUP CHAT'} CREATE FORM</h3>
+          <form autoComplete='off' onSubmit={handleSubmit} className='FormPage-form'>
+          <button onClick={toggleType} type='button' disabled={true}>
             {type === 'CRM' ? 'CREATE a Group Chat?' : 'CREATE a Chatroom?'}
           </button>
-          <form autoComplete='off' onSubmit={handleSubmit} className='FormPage-form'>
-            <label>Chat{ type === 'room' ? 'room' : ' Group '} Name: </label>
-              <input type='text' name='name'
-                value={formData.name}
-                minLength='3' maxLength='64'
-                onChange={handleChange}
-                placeholder={'Chat Name'}
-                required
-              />
-              <label>Description: </label>
-              <input className='input-textarea'
-                type='textarea' name='description'
-                minLength='1' maxLength='3000'
-                rows='15' cols='75'
-                onChange={handleChange} required
-                value={formData.description}
-              />
-            <label>Send Invites: </label>
-            <FormSearchComponent servicePackage={{ type, act: 'NEW', limit: type === 'CRM' ? 29 : 9}} 
-              handleChange={handleChange} formData={formData} setFormData={setFormData}/>
+            <div className='FormPage-form-spacer'>
+              <div className='FormPage-sub-container'>
+                <label>{ type === 'CRM' ? 'Chatroom' : 'Group Chat'} Name: </label>
+                <input type='text' name='name'
+                  value={formData.name}
+                  minLength='3' maxLength='64'
+                  onChange={handleChange}
+                  placeholder={'Chat Name'}
+                  required
+                />
+                <label>Description: </label>
+                <input className='input-textarea' id='FormPage-textarea'
+                  type='textarea' name='description'
+                  minLength='1' maxLength='3000'
+                  rows='15' cols='75'
+                  onChange={handleChange} required
+                  value={formData.description}
+                />
+              </div>
+              <div className='FormPage-sub-container'>
+                <label>Send Invites: </label>
+                { formData.invites.length === 0 ?
+                  <FormSearchComponent servicePackage={{ type, act: 'NEW', limit: type === 'CRM' ? 29 : 9}} 
+                    formData={formData} setFormData={setFormData} user={user} 
+                  />
+                :
+                <ul className='search-list'>
+                  {formData.invites.map((inv, idx) =>     
+                    <li className={ idx % 2 === 0 ? 's-list-item-1' : 's-list-item-2'} key={idx}>
+                        <p>{inv.avatar}</p>
+                        <p>{inv.name}</p>
+                    </li>
+                  )}
+                </ul>
+                }
+              </div>
+            </div>
             <button type='submit' >CREATE</button>
           </form>
           {formData.error && <p className='error-message'>&nbsp;{formData.error}</p>}

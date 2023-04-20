@@ -103,8 +103,9 @@ async function updateData(req, res) {
 
 async function findUsersPartial(req, res) {
     try {
-        if (req.body.txt.length > 3) {
-            const users = await User.findUsersPartial(req.body.txt);
+        if (req.body.txt.length >= 3) {
+            let users = await User.findUsersPartial(req.body.txt);
+            users = users.filter(u => `${u._id}` !== req.user._id);
             res.json(users);
         } else {
             res.status(400).json('Invalid Request!');
