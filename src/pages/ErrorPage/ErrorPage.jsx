@@ -1,7 +1,7 @@
 // Imports stylesheet(s):
 import './ErrorPage.css';
 // Imports Users Utilities:
-import { logOut } from '../../utilities/users-service';
+import { logOut } from '../../utilities/usersService';
 
 
 export default function ErrorPage({ error, alterUser, handleError }) {

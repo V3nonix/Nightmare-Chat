@@ -11,7 +11,6 @@ const memberSchema = new Schema({
     },
     role: {
         type: String, 
-        required: true, 
         default: 'Member',
         enum: ['Member', 'Moderator', 'Admin', 'Creator', 'SUPER_USER']
     }

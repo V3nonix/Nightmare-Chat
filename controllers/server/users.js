@@ -2,7 +2,6 @@
 const User = require('../../models/user');
 const UserData = require('../../models/userData');
 
-
 // Requires JWT (JsonWebToken):
 const jwt = require('jsonwebtoken');
 // Requires Bcrypt library:
@@ -73,13 +72,16 @@ async function login(req, res) {
 
 async function getData(req, res) {
     try {
+        console.log('Hit route controller!');
         // Finds userData in database:
         const userData = await UserData.findOne({ user: req.user._id });
-        // If userData appends to response:
+        // If userData, appends to response:
         if (userData) {
             res.json(userData);
         // If no userData sets response status:
         } else {
+            // No actual error on the backend.
+            // A resource simply does not exist:
             res.status(404).json('Resource not found!');
         }
     } catch(err) {
@@ -101,9 +103,9 @@ async function updateData(req, res) {
 
 async function findUsersPartial(req, res) {
     try {
-        if (req.body.txt.length > 3) {
-            const users = await User.findUsersPartial(req.body);
-            console.log(users);
+        if (req.body.txt.length >= 3) {
+            let users = await User.findUsersPartial(req.body.txt);
+            users = users.filter(u => `${u._id}` !== req.user._id);
             res.json(users);
         } else {
             res.status(400).json('Invalid Request!');

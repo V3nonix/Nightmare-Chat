@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Imports stylesheet(s):
 import './SignUpForm.css';
 // Imports Users Utilities:
-import { signUp } from '../../utilities/users-service';
+import { signUp } from '../../utilities/usersService';
 
 // Initial State:
 const initialForm = {
