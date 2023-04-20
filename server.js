@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const logger = require('morgan');
 const http = require('http');
-const { Server } = require('socket.io');
+const socketIO = require('socket.io');
 // Requires Io module:
 const ioModule = require('./io');
 // Requires and configures 'dotenv':
@@ -24,7 +24,7 @@ const ensureLoggedIn = require('./config/ensureLoggedIn');
 // Creates server:
 const server = http.createServer(app);
 // Initializes websockets on server:
-const io = new Server(server);
+const io = socketIO(server);
 
 ioModule.init(io);
 
