@@ -35,7 +35,7 @@ export default function UserProfileForm({ userAbout, setUserAbout, setFormOpen, 
     return (
         <form className='UserProfileForm  form-no-auto-dsbl'>
             <textarea className='input-textarea'
-                type='textarea' name='name'
+                type='textarea' name='about'
                 minLength='1' maxLength='750'
                 rows='15' cols='50'
                 onChange={handleChange} required

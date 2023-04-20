@@ -18,6 +18,7 @@ const roomSchema = new Schema({
         unique: [true, 'A chatroom with this name already exists!']
     },
     thumb: String,
+    type: {type: String, default: 'room'},
     creator: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
@@ -65,7 +66,10 @@ const roomSchema = new Schema({
             message: 'Maximum number of pending invatations!'
         }
     },
-
+    active: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: "User"
+    }
 }, {
     timestamps: true
 });

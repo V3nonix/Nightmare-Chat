@@ -1,7 +1,7 @@
 // Imports stylesheet(s):
 import './NavBar.css';
 // Imports Users Utilities:
-import { logOut } from '../../utilities/users-service';
+import { logOut } from '../../utilities/usersService';
 
 export default function NavBar({ type, alterUser, navigate }) {
     // Event handler functions:
@@ -15,19 +15,18 @@ export default function NavBar({ type, alterUser, navigate }) {
       <nav className='NavBar'>
         { type === 'UserPage' ?
           <>
-            <button onClick={() =>  navigate('/form/create-chat')}>CREATE CHAT</button>
-            <button onClick={() => navigate('/placeholder')}>PLACEHOLDER</button>
+            <button onClick={() =>  navigate('/forms/create-chat')}>CREATE CHAT</button>
+            <button onClick={() => navigate('/global')}>GLOBAL CHAT</button>
           </>       
 
         : type === 'FormPage' ?
           <>
-            <button onClick={() => navigate('/user')}>USER PAGE</button>
-            <button onClick={() => navigate('/placeholder')}>PLACEHOLDER</button>
+            <button onClick={() => navigate('/users')}>USER PAGE</button>
+            <button onClick={() => navigate('/global')}>GLOBAL CHAT</button>
           </>
         :
           <>
-            <button onClick={() => navigate('/user')}>USER PAGE</button>
-            <button onClick={() => navigate('/placeholder')}>PLACEHOLDER</button>
+            <button onClick={() => navigate('/users')}>USER PAGE</button>
           </>
         }
           <button onClick={handleLogOut} className='button-red-dark'>LOGOUT</button>

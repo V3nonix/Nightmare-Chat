@@ -18,6 +18,7 @@ const groupSchema = new Schema({
         unique: [true, 'A chatgroup with this name already exists!']
     },
     thumb: String,
+    type: {type: String, default: 'group'},
     creator: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
@@ -65,6 +66,10 @@ const groupSchema = new Schema({
             message: 'Maximum number of pending invatations!'
         }
     },
+    active: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: "User"
+    }
 }, {
     timestamps: true
 });

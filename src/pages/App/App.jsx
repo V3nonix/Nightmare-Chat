@@ -4,12 +4,15 @@ import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 // Imports Page Components:
 import AuthPage from '../AuthPage/AuthPage';
 import UserPage from '../UserPage/UserPage';
+import GlobalChatPage from '../GlobalChatPage/GlobalChatPage';
 import ChatroomPage from '../ChatroomPage/ChatroomPage';
 import GroupChatPage from '../GroupChatPage/GroupChatPage';
 import FormPage from '../FormPage/FormPage';
 import ErrorPage from '../ErrorPage/ErrorPage';
 // Imports Users Utilities:
-import { getUser } from '../../utilities/users-service';
+import { getUser } from '../../utilities/usersService';
+
+// DO ERROR HANDLING LATER!!!
 
 export default function App() {
   // Sets state:
@@ -45,7 +48,7 @@ export default function App() {
       <>
         <Routes>
           <Route 
-            path='/user' 
+            path='/users' 
             element={<UserPage user={user} 
                       navigate={navigate}
                       alterUser={alterUser}
@@ -53,35 +56,42 @@ export default function App() {
                     />} 
           />
           <Route 
-            path='/room/:id' 
+            path='/global' 
+            element={<GlobalChatPage user={user} 
+                      navigate={navigate}
+                      alterUser={alterUser}
+                    />} 
+          />
+          <Route 
+            path='/rooms/:id' 
             element={<ChatroomPage user={user} 
                       alterUser={alterUser}
                       handleError={handleError}
                     />} 
           />
           <Route 
-            path='/group/:id' 
+            path='/groups/:id' 
             element={<GroupChatPage user={user} 
                       alterUser={alterUser}
                       handleError={handleError}
                     />} 
           />
           <Route 
-            path='/error/:id' 
+            path='/errors/:id' 
             element={<ErrorPage error={error} 
                       alterUser={alterUser}
                       handleError={handleError}
                     />} 
           />
           <Route 
-            path='/form/:id' 
+            path='/forms/:id' 
             element={<FormPage user={user} 
                       navigate={navigate}
                       alterUser={alterUser}
                       handleError={handleError}
                     />} 
           />
-          <Route path="/*" element={<Navigate to="/user"/>}/>
+          <Route path="/*" element={<Navigate to="/users"/>}/>
         </Routes>
       </> 
         :

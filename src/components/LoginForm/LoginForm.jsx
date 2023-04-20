@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Imports stylesheet(s):
 import './LoginForm.css';
 // Imports Users Utilities:
-import { login } from '../../utilities/users-service';
+import { login } from '../../utilities/usersService';
 
 // Initial State:
 const initialCredentials = {
