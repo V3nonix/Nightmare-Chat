@@ -1,10 +1,15 @@
 // Requires Mongoose Model(s):
 const Room = require('./models/room');
 const Group = require('./models/group');
+const Global = require('./models/global');
+// Requires Mongoose Schema(s):
+const messageSchema = require('./models/schemas/message');
 // Requires JWT (JsonWebToken):
 const jwt = require('jsonwebtoken');
 
 const chats = {};
+
+const global = {}
 
 function init(server) {
     // Initializes socket.io at server instance:
@@ -12,8 +17,32 @@ function init(server) {
 
     io.on('connection', function(socket) {
         console.log(`Connected at socket.io: ${socket.id}`);
-      
-        socket.on('enter', async function({token, chatId, type}){
+
+        /*-- GLOBAL --*/
+
+        socket.on('enter-global', async function(token){
+            const user = await validateToken(token);
+            if (!user) return;
+            let global = getGlobal();
+            if (!global) global = await fetchGlobal();
+            socket.join(chat._id.toString());
+            chats[chat._id.toString()] = chat;
+            io.to(chat._id.toString()).emit('update-chat', chat);
+        });
+
+        socket.on('send-global', async function({token, msg}){
+            const user = await validateToken(token);
+            if (!user) return;
+        });
+
+        socket.on('exit-global', async function(token){
+            const user = await validateToken(token);
+            if (!user) return;
+        });
+
+        /*-- CHAT --*/
+
+        socket.on('enter-chat', async function({token, chatId, type}){
             const user = await validateToken(token);
             if (!user) return;
             let chat = findLocalChat(chatId);
@@ -25,7 +54,7 @@ function init(server) {
             }
         });
 
-        socket.on('send', async function({token, msg}){
+        socket.on('send-chat', async function({token, msg}){
             const user = await validateToken(token);
             if (!user) return;
         });
@@ -45,7 +74,7 @@ function init(server) {
             if (!user) return;
         });
 
-        socket.on('exit', async function(token){
+        socket.on('exit-chat', async function(token){
             const user = await validateToken(token);
             if (!user) return;
         });

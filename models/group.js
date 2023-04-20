@@ -67,7 +67,8 @@ const groupSchema = new Schema({
         }
     },
     active: {
-        type: [],
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: "User"
     }
 }, {
     timestamps: true

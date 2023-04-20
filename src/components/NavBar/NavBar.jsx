@@ -16,18 +16,17 @@ export default function NavBar({ type, alterUser, navigate }) {
         { type === 'UserPage' ?
           <>
             <button onClick={() =>  navigate('/forms/create-chat')}>CREATE CHAT</button>
-            <button onClick={() => navigate('/placeholder')}>PLACEHOLDER</button>
+            <button onClick={() => navigate('/global')}>GLOBAL CHAT</button>
           </>       
 
         : type === 'FormPage' ?
           <>
             <button onClick={() => navigate('/users')}>USER PAGE</button>
-            <button onClick={() => navigate('/placeholder')}>PLACEHOLDER</button>
+            <button onClick={() => navigate('/global')}>GLOBAL CHAT</button>
           </>
         :
           <>
             <button onClick={() => navigate('/users')}>USER PAGE</button>
-            <button onClick={() => navigate('/placeholder')}>PLACEHOLDER</button>
           </>
         }
           <button onClick={handleLogOut} className='button-red-dark'>LOGOUT</button>

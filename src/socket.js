@@ -5,25 +5,44 @@ const socket = window.io();
 // Initializes state setter to null:
 let setChat = null;
 
-// Registers state setter:
+// Registers state setter(s):
 export function registerSetChat(fnct) {
     setChat = fnct;
 }
 
+export function registerSetGlobal(fnct) {
+    setGloabl = fnct;
+}
+
 /* Emits to server: */
 
+// Enters public:
+export function enterGlobal() {
+    socket.emit('enter-global', {
+        token: usersService.getToken(),
+    });
+}
 
 // Enters a chat:
-export function enter(chatId) {
-    socket.emit('enter', {
+export function enterChat({chatId, type}) {
+    socket.emit('enter-chat', {
         token: usersService.getToken(),
-        chatId
+        chatId,
+        type
+    });
+}
+
+// Sends a message in public:
+export function sendGlobal(msg) {
+    socket.emit('send-global', {
+        token: usersService.getToken(),
+        msg
     });
 }
 
 // Sends a message in a chat:
-export function send(msg) {
-    socket.emit('send', {
+export function sendChat(msg) {
+    socket.emit('send-chat', {
         token: usersService.getToken(),
         msg
     });
@@ -55,8 +74,13 @@ export function remove(tarMember) {
 }
 
 // Exits a chat (temp):
-export function exit() {
-    socket.emit('exit', usersService.getToken());
+export function exitChat() {
+    socket.emit('exit-chat', usersService.getToken());
+}
+
+// Exits a chat (temp):
+export function exitGlobal() {
+    socket.emit('exit-global', usersService.getToken());
 }
 
 // Leaves a chat (perm):
@@ -70,6 +94,9 @@ socket.on('update-chat', function(chat) {
     setChat(chat);
 });
 
+socket.on('update-global', function(global) {
+    setGlobal(global);
+});
 
 // ICE BOX //
 /* 
@@ -98,6 +125,15 @@ export function deleteChat(chatId) {
     socket.emit('delete', {
         token: usersService.getToken(),
         chatId
+    });
+}
+
+// Edits an editable on a chat:
+
+export function edit(tarProp) {
+    socket.emit('edit', {
+        token: usersService.getToken(),
+        tarProp
     });
 }
 

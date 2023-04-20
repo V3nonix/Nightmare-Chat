@@ -4,12 +4,15 @@ import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 // Imports Page Components:
 import AuthPage from '../AuthPage/AuthPage';
 import UserPage from '../UserPage/UserPage';
+import GlobalChatPage from '../GlobalChatPage/GlobalChatPage';
 import ChatroomPage from '../ChatroomPage/ChatroomPage';
 import GroupChatPage from '../GroupChatPage/GroupChatPage';
 import FormPage from '../FormPage/FormPage';
 import ErrorPage from '../ErrorPage/ErrorPage';
 // Imports Users Utilities:
 import { getUser } from '../../utilities/usersService';
+
+// DO ERROR HANDLING LATER!!!
 
 export default function App() {
   // Sets state:
@@ -50,6 +53,13 @@ export default function App() {
                       navigate={navigate}
                       alterUser={alterUser}
                       handleError={handleError}
+                    />} 
+          />
+          <Route 
+            path='/global' 
+            element={<GlobalChatPage user={user} 
+                      navigate={navigate}
+                      alterUser={alterUser}
                     />} 
           />
           <Route 
