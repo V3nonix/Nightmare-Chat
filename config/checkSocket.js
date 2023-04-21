@@ -13,4 +13,4 @@ module.exports = function(socket, next) {
     } catch (err) {
       return next(new Error('Invalid token!'));
     }
-  };
+};

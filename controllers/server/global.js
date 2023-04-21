@@ -3,24 +3,26 @@ const Global = require('../../models/global');
 
 async function fetchGlobal() {
     // Retrieves global:
-    const global = await Global.findById('6441f4d4ef2bbdf9f1db43d5');
-    console.log(global);
+    const global = await Global.find({});
+    return global[0];
+}
+
+async function msgGlobal(msg) {
+    const global = await fetchGlobal();
+    if (global.messages.length === 300) global.messages.pop();
+    global.messages.push(msg);
+    await global.save();
     return global;
 }
 
-async function msgGlobal(msg, global) {
-    if (global.messages.length === 300) global.messages.pop();
-    global.messages.push(msg);
-    if (Global.validate(global)) return global;
-}
-
 async function saveGlobal(global) {
-    if (Global.validate(global)) await Global.save(global);
+    await global.save();
+    return true;
 }
 
 // Exports module methods:
 module.exports = {
     fetchGlobal,
     msgGlobal,
-    saveGlobal
+    saveGlobal,
 };

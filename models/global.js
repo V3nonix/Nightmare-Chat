@@ -6,10 +6,6 @@ const Schema = mongoose.Schema;
 const messageSchema = require('./schemas/message');
 
 const globalSchema = new Schema({
-    active: {
-        type : Array, 
-        default : [],
-    },
     messages: { 
         type : [messageSchema], 
         default : [],
