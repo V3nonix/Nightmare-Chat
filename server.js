@@ -49,7 +49,6 @@ io.on('connection', (socket) => {
         io.to('NIGHTMARE').emit('update-global', global);
     });
 
-
 });
 
 // Router(s):
