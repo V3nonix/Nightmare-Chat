@@ -106,7 +106,7 @@ export default function CreateChatForm({ user, navigate }) {
                 }
               </div>
             </div>
-            <button type='submit' >CREATE</button>
+            <button type='submit' disabled={true}>CREATE</button>
           </form>
           {formData.error && <p className='error-message'>&nbsp;{formData.error}</p>}
         </div>

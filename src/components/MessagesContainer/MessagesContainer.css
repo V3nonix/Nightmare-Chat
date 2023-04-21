@@ -1,0 +1,8 @@
+.messages-container {
+    margin: 1.5vmin 1.5vmin 1.5vmin 1.5vmin;
+    background-color: var(--background-2);
+    border: 0.1rem outset var(--accent-2);
+    height: 50vmin;
+    padding: 0.25rem;
+    overflow-y: scroll;
+}

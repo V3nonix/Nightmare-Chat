@@ -1,13 +1,14 @@
 import { useState } from 'react';
 // Imports stylesheet(s):
 import './ChatGroupList.css';
-// Imports Components:
+// Imports Component(s):
 import ChatGroupListItem from '../ChatGroupListItem/ChatGroupListItem';
 
 export default function ChatGroupList({ groups, navigate, active }) {
   // Sets state:
   const [toggle, setToggle] = useState(false);
   const [groupsState, setGroupsState] = useState(groups);
+  
   // Event handler functions:
   
   return (
@@ -29,7 +30,7 @@ export default function ChatGroupList({ groups, navigate, active }) {
       { toggle &&
         <>
           {groups.length <= 15 ?
-            <button onClick={() => navigate('/form/add-group')}>ADD GROUP</button>
+            <button onClick={() => navigate('/form/add-group')} disabled={true}>ADD GROUP</button>
             :
             <h6>Maximum chat groups reached!</h6>
           }

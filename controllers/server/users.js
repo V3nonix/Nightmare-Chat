@@ -72,7 +72,6 @@ async function login(req, res) {
 
 async function getData(req, res) {
     try {
-        console.log('Hit route controller!');
         // Finds userData in database:
         const userData = await UserData.findOne({ user: req.user._id });
         // If userData, appends to response:
