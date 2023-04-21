@@ -9,10 +9,6 @@ export default function GlobalChatPage({ user, alterUser, navigate }) {
 
     const [global, setGlobal] = useState(null);
 
-    function logGlobal() {
-        console.log(global);
-    }
-
     useEffect(() => {
         socket.registerSetGlobal(setGlobal);
         socket.enterGlobal();
@@ -27,7 +23,6 @@ export default function GlobalChatPage({ user, alterUser, navigate }) {
         <main className="chat-page">
             <MessagesContainer global={global}/>
             <MessageInput user={user}/>
-            <button onClick={logGlobal}>logGlobal</button>
         </main>
     </>
     );
