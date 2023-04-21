@@ -29,11 +29,13 @@ export default function MessageInput({ user }) {
   }
 
   return (
-    <form className='Message-form' onSubmit={handleSendMsg}>
+    <form className='message-form' onSubmit={handleSendMsg}>
+      <label>Message Input</label>
       <textarea className='input-textarea'
           type='textarea' name='contents'
           minLength='1' maxLength='1547'
-          rows='15' cols='50'
+          rows='10' cols='65'
+          placeholder="Input message here!"
           onChange={handleChange} required
           value={msg.contents}
       />

@@ -1,0 +1,22 @@
+.message-input-textarea {
+    resize: none;
+    background-color: var(--background-1);
+    border: 0.1rem inset var(--accent-2);
+    margin: 0 1vmin 1vmin 1vmin;
+    color: var(--text-light-aux);
+}
+
+.message-form {
+    margin: 0;
+    height: 20vmin;
+    width: 60vmin;
+    padding: 1.5vmin;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-light);
+}
+
+.message-form > button {
+    width: fit-content;
+}

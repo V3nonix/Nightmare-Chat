@@ -20,7 +20,7 @@ export default function GlobalChatPage({ user, alterUser, navigate }) {
     return (
     <>
         <Header type={'Global'} alterUser={alterUser} navigate={navigate}/>
-        <main className="chat-page">
+        <main className="chat-page" id='global'>
             <MessagesContainer global={global}/>
             <MessageInput user={user}/>
         </main>

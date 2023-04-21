@@ -1,8 +1,24 @@
-.messages-container {
+.messages-container-outer {
     margin: 1.5vmin 1.5vmin 1.5vmin 1.5vmin;
     background-color: var(--background-2);
     border: 0.1rem outset var(--accent-2);
+    height: 55vmin;
+    width: 125vmin;
+    padding: 0.25rem;
+}
+
+.messages-container-inner {
+    margin: 1.5vmin 1.5vmin 1.5vmin 1.5vmin;
+    background-color: var(--background-1);
+    border: 0.1rem inset var(--accent-2);
     height: 50vmin;
     padding: 0.25rem;
-    overflow-y: scroll;
+    color: var(--text-light);
+    overflow-y: auto;
+    overflow-anchor: none;
+}
+
+#messages-anchor {
+    overflow-anchor: auto;
+    height: 0.1vmin;
 }

@@ -42,7 +42,6 @@ export function exitGlobal() {
 
 // Recieves from server:
 socket.on('update-global', function(global) {
-    console.log(global);
     setGlobal(global);
 });
 

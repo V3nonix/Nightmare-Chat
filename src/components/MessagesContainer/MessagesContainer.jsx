@@ -12,18 +12,21 @@ export default function MessagesContainer({ global }) {
     msgEls = false;
   }
   return (
-    <div className='messages-container'>
-      { msgEls ?
-          <ul>
-              {msgEls}
-          </ul> 
-      :
-        <>
-          <div>
-            <h3>No messages.</h3>
-          </div>
-        </>
-      }
+    <div className='messages-container-outer'>
+      <div className='messages-container-inner'>
+        { msgEls ?
+            <ul className='messages-list'>
+                {msgEls}
+                <div id='messages-anchor'></div>
+            </ul> 
+        :
+          <>
+            <div>
+              <h3>No messages.</h3>
+            </div>
+          </>
+        }
+      </div>
     </div>
   );
 }
