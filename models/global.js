@@ -7,8 +7,8 @@ const messageSchema = require('./schemas/message');
 
 const globalSchema = new Schema({
     active: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: "User"
+        type : Array, 
+        default : [],
     },
     messages: { 
         type : [messageSchema], 

@@ -1,13 +1,14 @@
 import { useState } from 'react';
 // Imports stylesheet(s):
 import './ChatGroupList.css';
-// Imports Components:
+// Imports Component(s):
 import ChatGroupListItem from '../ChatGroupListItem/ChatGroupListItem';
 
 export default function ChatGroupList({ groups, navigate, active }) {
   // Sets state:
   const [toggle, setToggle] = useState(false);
   const [groupsState, setGroupsState] = useState(groups);
+  
   // Event handler functions:
   
   return (
