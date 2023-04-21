@@ -1,7 +1,21 @@
 import { getToken } from './utilities/usersService';
 import { io } from 'socket.io-client';
 // Declares socket to
-const socket = io({autoConnect: false});
+const socket = io({
+    autoConnect: false,
+    auth: {
+        token: getToken()
+    }
+});
+
+socket.on("connect_error", (err) => {
+    console.log(`connect_error due to ${err.message}`);
+});
+
+socket.on("connect", () => {
+    console.log(`Connected at ${socket.id}`);
+});
+
 
 // Socket connection:
 export function connect() {
@@ -26,7 +40,6 @@ export function registerSetGlobal(fnct) {
 
 // Enters public:
 export function enterGlobal() {
-    console.log('Hit enterGlobal!');
     socket.emit('enter-global', {
         token: getToken(),
     });
@@ -47,6 +60,7 @@ export function exitGlobal() {
 
 // Recieves from server:
 socket.on('update-global', function(global) {
+    console.log(global);
     setGlobal(global);
 });
 
