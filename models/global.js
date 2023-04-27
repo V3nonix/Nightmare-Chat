@@ -16,6 +16,15 @@ const globalSchema = new Schema({
             message: 'Maximum messages reached!'
         }
     }
+}, {
+    toJSON: {
+        transform: function(doc, ret) {
+            delete ret.createdAt;
+            delete ret._id;
+            delete ret.__v;
+            return ret;
+        }
+    }
 });
 
 // Exports userSchema as Mongoose Model:

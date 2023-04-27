@@ -72,7 +72,6 @@ body {
 
 .chat-page {
   margin: 0;
-  display: grid;
   height: 90vh;
   width: 100vw;
   background-color: var(--background-1);

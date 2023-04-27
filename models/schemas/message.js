@@ -16,7 +16,17 @@ const messageSchema = new Schema({
         required: true
     }
 }, {
-    timestamps: true
+    timestamps: true,
+    toJSON: {
+        transform: function(doc, ret) {
+            ret.date = new Date(doc.createdAt);
+            delete ret.createdAt;
+            delete ret.updatedAt;
+            delete ret._id;
+            delete ret.__v;
+            return ret;
+        }
+    }
 });
 
 // Exports messageSchema as mongoose Schema:

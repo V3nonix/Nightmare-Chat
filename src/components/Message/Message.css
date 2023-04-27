@@ -1,0 +1,43 @@
+.message {
+    list-style: none;
+    width: 75vmin;
+    margin: 3vmin auto;
+    padding: 0.5vmin;
+    text-align: center;
+    position: relative;
+}
+
+.message-body {
+    text-align: left;
+    margin-left: 1.5vmin;
+}
+
+.message-date {
+    text-align: right;
+    margin-right: 1.5vmin;
+    color: var(--accent-4);
+}
+
+.message-name {
+    text-align: center;
+    margin: 1vmin;
+    color: var(--text-light-aux);
+}
+
+.message-head {
+    display: flex;
+    margin: 0;
+    justify-content: space-between;
+}
+
+.msg-1 {
+    background-color: var(--accent-4);
+    background-image: linear-gradient(to bottom right, var(--accent-5), var(--background-1));
+    border: 0.1rem outset var(--accent-3);
+}
+
+.msg-2 {
+    background-color: var(--accent-4);
+    background-image: linear-gradient(to top left, var(--accent-5), var(--background-2));
+    border: 0.1rem outset var(--accent-5);
+}

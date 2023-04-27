@@ -1,5 +1,7 @@
 import { useState, useEffect} from "react";
 import * as socket from "../../socket";
+// Imports stylesheet(s):
+import './GlobalChatPage.css';
 // Imports Component(s):
 import Header from "../../components/Header/Header";
 import MessageInput from "../../components/MessageInput/MessageInput";
