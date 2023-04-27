@@ -1,9 +1,9 @@
 # Nightmare-Chat
 
 ### Getting Started:
-  [Launch the app!](https://nightmare-chat.herokuapp.com/users)
+  [Launch the app!](https://nightmare-chat.herokuapp.com/)
   <br/><br/>
-  Navigate to the user page! *It already does that for you, so you have no choice...*
+  Login and navigate to the user page! *It already does that for you, so you have no choice...*
   There you can edit your profile! No one can see it yet though, so it is only for your own amusement.
   Click on the global chat button to chat! It is a bit touchy, sometimes it renders real time, someimes it requires a refresh after the page loads. But hey, it is just proof of concept, it will be better optimized in the future... When I get around to fixing it.
 
@@ -32,11 +32,11 @@
 [![GitHub](https://badgen.net/badge/icon/github?icon=github&label)](https://github.com)
 [![Npm](https://badgen.net/badge/icon/npm?icon=npm&label)](https://https://npmjs.com/)
 <br/>Resource Links:<br/>
-| [ERD](https://lucid.app/documents/view/4c34b76a-0f2b-4bff-87a4-d2eec348bd6a) |-----| [Wire Frames](https://whimsical.com/nightmarechat-gd1PKZ6Nmv124EbqKih5k) |-----| [Trello]() |<br/>
-
-**CODE BLOCK:**
+| [ERD](https://lucid.app/documents/view/4c34b76a-0f2b-4bff-87a4-d2eec348bd6a) |-----| [Wire Frames](https://whimsical.com/nightmarechat-gd1PKZ6Nmv124EbqKih5k) |-----| [Trello](https://trello.com/b/qTQSLPOP/nightmarechat) |<br/>
+### Description:
+This project became a nightmare... For me. (In all seriousness, I will be changing this when I actually have a decent app.
+<br/>**CODE BLOCKS:**
 <details>
-
 This was pretty cool:
   
 ```
@@ -107,12 +107,16 @@ io.on('connection', (socket) => {
 <br />
   
 ### Screenshots:
-
-I will post some when I feel more confident in how the final product looks.
+<details><summary>Auth Page</summary>
+<img src="screenshots/Screenshot3.PNG"  width="60%" height="30%">
+</details>
+<details><summary>User Page</summary>
+<img src="screenshots/Screenshot2.PNG"  width="60%" height="30%">
+</details>
+<details><summary>Global Chat Page</summary>
+<img src="screenshots/Screenshot1.PNG"  width="60%" height="30%">
+</details><br/>
 
 ### Roadmap:
 
-There is much more to learn before I consider properly planning out these features.
-
-
-
+There is much more to learn before I consider properly planning out future features.
